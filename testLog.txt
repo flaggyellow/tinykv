@@ -1,0 +1,439 @@
+rm -rf /tmp/*test-raftstore*
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestBasic2B|| true
+=== RUN   TestBasic2B
+2022/03/07 09:25:32.934175 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:25:32.935755 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/03/07 09:25:32.936754 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 1.113301ms[0m
+2022/03/07 09:25:32.938493 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:25:32.939553 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/03/07 09:25:32.940536 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 1.027314ms[0m
+2022/03/07 09:25:32.941955 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:25:32.942811 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/03/07 09:25:32.942860 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 856.338µs[0m
+2022/03/07 09:25:32.943239 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:25:32.943308 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/03/07 09:25:32.943345 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 60.444µs[0m
+2022/03/07 09:25:32.944160 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:25:32.944238 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/03/07 09:25:32.944270 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 60.935µs[0m
+2022/03/07 09:25:55.976765 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/03/07 09:25:55.979417 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/03/07 09:25:55.979494 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/03/07 09:25:55.979518 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/03/07 09:25:55.979530 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+--- PASS: TestBasic2B (23.60s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	23.647s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConcurrent2B|| true
+=== RUN   TestConcurrent2B
+2022/03/07 09:25:59.234418 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:25:59.234657 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/03/07 09:25:59.234705 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 140.424µs[0m
+2022/03/07 09:25:59.235337 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:25:59.235422 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/03/07 09:25:59.235453 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 69.001µs[0m
+2022/03/07 09:25:59.235804 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:25:59.235872 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/03/07 09:25:59.235902 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 53.867µs[0m
+2022/03/07 09:25:59.236430 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:25:59.236593 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/03/07 09:25:59.236696 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 127.635µs[0m
+2022/03/07 09:25:59.237120 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:25:59.237419 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/03/07 09:25:59.237528 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 171.625µs[0m
+panic: test timed out after 10m0s
+
+goroutine 278 [running]:
+testing.(*M).startAlarm.func1()
+	/usr/lib/go-1.13/src/testing/testing.go:1377 +0xdf
+created by time.goFunc
+	/usr/lib/go-1.13/src/time/sleep.go:168 +0x44
+
+goroutine 1 [chan receive, 10 minutes]:
+testing.(*T).Run(0xc00017a700, 0xd4f619, 0x10, 0xd7f608, 0x493a01)
+	/usr/lib/go-1.13/src/testing/testing.go:961 +0x377
+testing.runTests.func1(0xc00017a500)
+	/usr/lib/go-1.13/src/testing/testing.go:1202 +0x78
+testing.tRunner(0xc00017a500, 0xc0001a5dc0)
+	/usr/lib/go-1.13/src/testing/testing.go:909 +0xc9
+testing.runTests(0xc0001aa420, 0x134a700, 0x20, 0x20, 0x0)
+	/usr/lib/go-1.13/src/testing/testing.go:1200 +0x2a7
+testing.(*M).Run(0xc00015a500, 0x0)
+	/usr/lib/go-1.13/src/testing/testing.go:1117 +0x176
+main.main()
+	_testmain.go:106 +0x135
+
+goroutine 41 [runnable]:
+reflect.valueInterface(0xd048a0, 0xc17b7e50b0, 0x16, 0xd04801, 0xc17b7e50b0, 0x16)
+	/usr/lib/go-1.13/src/reflect/value.go:1006 +0x1c2
+reflect.Value.Interface(...)
+	/usr/lib/go-1.13/src/reflect/value.go:1003
+github.com/golang/protobuf/proto.(*TextMarshaler).writeStruct(0x1351cc2, 0xc1c463b760, 0xcce900, 0xc17b7e50b0, 0x199, 0x199, 0xe41220)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:450 +0x1811
+github.com/golang/protobuf/proto.(*TextMarshaler).writeAny(0x1351cc2, 0xc1c463b760, 0xd048a0, 0xc1c46d63c8, 0x196, 0xc1be8dbe00, 0xe653a0, 0xd048a0)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:536 +0x22f
+github.com/golang/protobuf/proto.(*TextMarshaler).writeStruct(0x1351cc2, 0xc1c463b760, 0xce7560, 0xc1c46d63c0, 0x199, 0x199, 0xe41220)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:439 +0x851
+github.com/golang/protobuf/proto.(*TextMarshaler).writeAny(0x1351cc2, 0xc1c463b760, 0xd12ca0, 0xc1c4675a40, 0x196, 0xc1be8dbc80, 0xe653a0, 0xd12ca0)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:536 +0x22f
+github.com/golang/protobuf/proto.(*TextMarshaler).writeStruct(0x1351cc2, 0xc1c463b760, 0xcdc5e0, 0xc1c4675a40, 0x199, 0x199, 0x7fd47337f008)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:439 +0x851
+github.com/golang/protobuf/proto.(*TextMarshaler).Marshal(0x1351cc2, 0xe41220, 0xc1c469f8f0, 0xe51ec0, 0xc1c4675a40, 0x3b9aca00, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:811 +0x295
+github.com/golang/protobuf/proto.(*TextMarshaler).Text(0x1351cc2, 0xe51ec0, 0xc1c4675a40, 0x0, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:823 +0x6e
+github.com/golang/protobuf/proto.CompactTextString(...)
+	/home/huangqz/workspace/pkg/mod/github.com/golang/protobuf@v1.3.4/proto/text.go:845
+github.com/pingcap-incubator/tinykv/proto/pkg/raft_cmdpb.(*RaftCmdRequest).String(...)
+	/home/huangqz/codes/repository/tinykv/proto/pkg/raft_cmdpb/raft_cmdpb.pb.go:1340
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).CallCommandOnLeader(0xc000109260, 0xc1c4675a40, 0x12a05f200, 0x10, 0xc17c716380)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:224 +0x259
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).Request(0xc000109260, 0xc1c46935f0, 0xa, 0x10, 0xc1c446d730, 0x1, 0x1, 0x12a05f200, 0x10, 0x10)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:190 +0x2fa
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).MustDeleteCF(0xc000109260, 0xd48e09, 0x7, 0xc1c46935f0, 0xa, 0x10)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:347 +0x148
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).MustDelete(...)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:342
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.GenericTest(0xc00017a700, 0xd45bdc, 0x2, 0x5, 0x62000000, 0xffffffffffffffff, 0x2c211ace910000)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/test_test.go:286 +0x4a8
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.TestConcurrent2B(0xc00017a700)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/test_test.go:339 +0x65
+testing.tRunner(0xc00017a700, 0xd7f608)
+	/usr/lib/go-1.13/src/testing/testing.go:909 +0xc9
+created by testing.(*T).Run
+	/usr/lib/go-1.13/src/testing/testing.go:960 +0x350
+
+goroutine 9 [select, 10 minutes]:
+github.com/dgraph-io/ristretto.(*defaultPolicy).processItems(0xc0001276b0)
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/policy.go:96 +0xbe
+created by github.com/dgraph-io/ristretto.newDefaultPolicy
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/policy.go:80 +0x129
+
+goroutine 43 [select, 10 minutes]:
+github.com/dgraph-io/ristretto.(*Cache).processItems(0xc000032300)
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/cache.go:250 +0xbc
+created by github.com/dgraph-io/ristretto.NewCache
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/cache.go:152 +0x1f3
+
+goroutine 44 [select, 10 minutes]:
+github.com/Connor1996/badger.Open.func4(0xc000118380)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:290 +0x162
+created by github.com/Connor1996/badger.Open
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:287 +0xd2f
+
+goroutine 45 [runnable]:
+os.(*File).readdirnames(0xc1c446c008, 0xffffffffffffffff, 0x0, 0xc100000000, 0xc1c446c008, 0x0, 0x0)
+	/usr/lib/go-1.13/src/os/dir_unix.go:32 +0x3c9
+os.(*File).Readdirnames(...)
+	/usr/lib/go-1.13/src/os/dir.go:48
+path/filepath.readDirNames(0xc00012a3c0, 0x21, 0x21, 0xc00012a3dd, 0x4, 0xc17c7a9d58, 0x4ab7e9)
+	/usr/lib/go-1.13/src/path/filepath/path.go:419 +0x18b
+path/filepath.walk(0xc00012a3c0, 0x21, 0xe5ac60, 0xc1c4753790, 0xc17c7a9e60, 0x0, 0x0)
+	/usr/lib/go-1.13/src/path/filepath/path.go:361 +0x72
+path/filepath.Walk(0xc00012a3c0, 0x21, 0xc17c7a9e60, 0x0, 0x0)
+	/usr/lib/go-1.13/src/path/filepath/path.go:404 +0xff
+github.com/Connor1996/badger.(*DB).calculateSize.func1(0xc00012a3c0, 0x21, 0x21, 0x10000001)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:988 +0x8c
+github.com/Connor1996/badger.(*DB).calculateSize(0xc00013c000)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:1006 +0x4a
+github.com/Connor1996/badger.(*DB).updateSize(0xc00013c000, 0xc0001ab160)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:1026 +0xce
+created by github.com/Connor1996/badger.Open
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:302 +0xe03
+
+goroutine 46 [select]:
+github.com/Connor1996/badger/epoch.(*ResourceManager).collectLoop(0xc0000326c0, 0xc0001ab180)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:100 +0x10d
+created by github.com/Connor1996/badger/epoch.NewResourceManager
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:78 +0x84
+
+goroutine 10 [select, 10 minutes]:
+github.com/Connor1996/badger.(*blobGCHandler).run(0xc000159a40, 0xc000117ce0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/blob.go:467 +0x106
+created by github.com/Connor1996/badger.(*blobManager).Open
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/blob.go:291 +0x61e
+
+goroutine 11 [runnable]:
+sync.(*RWMutex).RUnlock(0xc0000e4030)
+	/usr/lib/go-1.13/src/sync/rwmutex.go:62 +0x50
+github.com/Connor1996/badger.(*compactStatus).overlapsWith(0xc0000e4030, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0xc000032700)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/compaction.go:128 +0xf2
+github.com/Connor1996/badger.(*levelsController).pickCompactLevels(0xc0000e4000, 0x0, 0x0, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:242 +0x9b
+github.com/Connor1996/badger.(*levelsController).runWorker(0xc0000e4000, 0xc000117d20)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:202 +0x1f1
+created by github.com/Connor1996/badger.(*levelsController).startCompact
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:183 +0x88
+
+goroutine 12 [runnable]:
+internal/reflectlite.Swapper(0xc045a0, 0x13bb880, 0xc045a0)
+	/usr/lib/go-1.13/src/internal/reflectlite/swapper.go:13 +0x79c
+sort.Slice(0xc045a0, 0x13bb880, 0xc00005de78)
+	/usr/lib/go-1.13/src/sort/slice.go:15 +0x7d
+github.com/Connor1996/badger.(*levelsController).pickCompactLevels(0xc0000e4000, 0x0, 0x0, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:264 +0x319
+github.com/Connor1996/badger.(*levelsController).runWorker(0xc0000e4000, 0xc000117d20)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:202 +0x1f1
+created by github.com/Connor1996/badger.(*levelsController).startCompact
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:183 +0x88
+
+goroutine 13 [runnable]:
+github.com/Connor1996/badger/epoch.(*guardList).add(0xc000032708, 0xc183151dc0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/list.go:12 +0x70
+github.com/Connor1996/badger/epoch.(*ResourceManager).AcquireWithPayload(0xc0000326c0, 0x0, 0x0, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:88 +0x87
+github.com/Connor1996/badger/epoch.(*ResourceManager).Acquire(...)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:93
+github.com/Connor1996/badger.(*levelsController).runWorker(0xc0000e4000, 0xc000117d20)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:201 +0x1d3
+created by github.com/Connor1996/badger.(*levelsController).startCompact
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/levels.go:183 +0x88
+
+goroutine 14 [chan receive, 10 minutes]:
+github.com/Connor1996/badger.(*DB).runFlushMemTable(0xc00013c000, 0xc0001ab0a0, 0x0, 0x0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:905 +0xff
+created by github.com/Connor1996/badger.Open
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:321 +0x1559
+
+goroutine 53 [select]:
+github.com/Connor1996/badger.(*writeWorker).runWriteVLog(0xc0001aafe0, 0xc0001aafa0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:93 +0x167
+created by github.com/Connor1996/badger.startWriteWorker
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:63 +0x193
+
+goroutine 52 [select]:
+github.com/Connor1996/badger.(*writeWorker).runFlusher(0xc0001aafe0, 0xc0001aafa0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:72 +0x116
+created by github.com/Connor1996/badger.startWriteWorker
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:61 +0x226
+
+goroutine 48 [select, 10 minutes]:
+github.com/Connor1996/badger.(*blobGCHandler).run(0xc000196940, 0xc00000fde0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/blob.go:467 +0x106
+created by github.com/Connor1996/badger.(*blobManager).Open
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/blob.go:291 +0x61e
+
+goroutine 47 [select]:
+github.com/Connor1996/badger/epoch.(*ResourceManager).collectLoop(0xc0001087e0, 0xc000117da0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:100 +0x10d
+created by github.com/Connor1996/badger/epoch.NewResourceManager
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:78 +0x84
+
+goroutine 54 [chan receive, locked to thread]:
+github.com/Connor1996/badger.(*writeWorker).runWriteLSM(0xc0001aafe0, 0xc0001aafa0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:139 +0x1aa
+created by github.com/Connor1996/badger.startWriteWorker
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:64 +0x1bf
+
+goroutine 55 [chan receive]:
+github.com/Connor1996/badger.(*writeWorker).runMergeLSM(0xc0001aafe0, 0xc0001aafa0)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/writer.go:152 +0xba
+*** Test killed: ran too long (11m0s).
+FAIL	github.com/pingcap-incubator/tinykv/kv/test_raftstore	665.972s
+FAIL
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestUnreliable2B|| true
+=== RUN   TestUnreliable2B
+2022/03/07 09:37:12.277955 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:37:12.278205 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/03/07 09:37:12.278248 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 142.61µs[0m
+2022/03/07 09:37:12.278542 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:37:12.278609 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/03/07 09:37:12.278641 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 59.168µs[0m
+2022/03/07 09:37:12.281165 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:37:12.282319 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/03/07 09:37:12.282826 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 541.602µs[0m
+2022/03/07 09:37:12.283468 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:37:12.284249 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/03/07 09:37:12.284354 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 142.796µs[0m
+2022/03/07 09:37:12.284682 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:37:12.285084 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/03/07 09:37:12.285198 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 152.404µs[0m
+2022/03/07 09:37:53.770279 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/03/07 09:37:53.772551 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/03/07 09:37:53.774027 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/03/07 09:37:53.774519 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/03/07 09:37:53.774613 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+--- PASS: TestUnreliable2B (42.16s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	42.211s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestOnePartition2B|| true
+=== RUN   TestOnePartition2B
+2022/03/07 09:37:57.199799 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:37:57.200064 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/03/07 09:37:57.200108 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 139.136µs[0m
+2022/03/07 09:37:57.201962 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:37:57.203126 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/03/07 09:37:57.203225 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 141.307µs[0m
+2022/03/07 09:37:57.203893 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:37:57.204181 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/03/07 09:37:57.204438 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 289.095µs[0m
+2022/03/07 09:37:57.204861 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:37:57.205545 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/03/07 09:37:57.205623 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 112.584µs[0m
+2022/03/07 09:37:57.205968 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:37:57.206439 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/03/07 09:37:57.206633 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 229.154µs[0m
+2022/03/07 09:38:01.151249 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/03/07 09:38:01.151295 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/03/07 09:38:01.151310 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/03/07 09:38:01.151323 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/03/07 09:38:01.151336 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestOnePartition2B (4.37s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	4.395s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestManyPartitionsOneClient2B|| true
+=== RUN   TestManyPartitionsOneClient2B
+2022/03/07 09:38:04.406473 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:38:04.406778 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 5[0m
+2022/03/07 09:38:04.406825 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 175.389µs[0m
+2022/03/07 09:38:04.407119 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:38:04.407768 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 1[0m
+2022/03/07 09:38:04.407810 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 75.061µs[0m
+2022/03/07 09:38:04.408153 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:38:04.408235 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 2[0m
+2022/03/07 09:38:04.408262 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 58.843µs[0m
+2022/03/07 09:38:04.408603 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:38:04.408682 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 3[0m
+2022/03/07 09:38:04.408731 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 71.612µs[0m
+2022/03/07 09:38:04.409042 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:38:04.409123 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 4[0m
+2022/03/07 09:38:04.409150 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 54.14µs[0m
+2022/03/07 09:38:05.709445 test_test.go:104: [0;37m[info] partition: [4 5], [1 2 3][0m
+2022/03/07 09:38:06.400570 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/03/07 09:38:07.090681 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/03/07 09:38:07.767762 test_test.go:104: [0;37m[info] partition: [1 2 4], [3 5][0m
+2022/03/07 09:38:08.431917 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/03/07 09:38:08.947674 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/03/07 09:38:09.576846 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/03/07 09:38:10.222021 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/03/07 09:38:12.669490 test_test.go:104: [0;37m[info] partition: [1 2 3 4 5], [][0m
+2022/03/07 09:38:13.331620 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/03/07 09:38:13.942753 test_test.go:104: [0;37m[info] partition: [1 2 3 4 5], [][0m
+2022/03/07 09:38:14.609943 test_test.go:104: [0;37m[info] partition: [1 3 4 5], [2][0m
+2022/03/07 09:38:15.239021 test_test.go:104: [0;37m[info] partition: [1 3], [2 4 5][0m
+2022/03/07 09:38:15.921155 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/03/07 09:38:16.509915 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/03/07 09:38:17.175951 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/03/07 09:38:20.258544 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/03/07 09:38:20.848720 test_test.go:104: [0;37m[info] partition: [5], [1 2 3 4][0m
+2022/03/07 09:38:21.452018 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/03/07 09:38:22.019264 test_test.go:104: [0;37m[info] partition: [2 5], [1 3 4][0m
+2022/03/07 09:38:22.660446 test_test.go:104: [0;37m[info] partition: [1 2 4 5], [3][0m
+2022/03/07 09:38:23.312723 test_test.go:104: [0;37m[info] partition: [4], [1 2 3 5][0m
+2022/03/07 09:38:23.873856 test_test.go:104: [0;37m[info] partition: [1 2 3 5], [4][0m
+2022/03/07 09:38:24.495995 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/03/07 09:38:25.040169 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/03/07 09:38:27.868277 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/03/07 09:38:27.868330 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/03/07 09:38:27.875627 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/03/07 09:38:27.878968 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/03/07 09:38:27.878998 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+--- PASS: TestManyPartitionsOneClient2B (23.99s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	24.066s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestManyPartitionsManyClients2B|| true
+=== RUN   TestManyPartitionsManyClients2B
+2022/03/07 09:38:31.090374 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/03/07 09:38:31.090621 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/03/07 09:38:31.090663 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 137.321µs[0m
+2022/03/07 09:38:31.090975 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/03/07 09:38:31.092464 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/03/07 09:38:31.093439 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 2.42906ms[0m
+2022/03/07 09:38:31.094704 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/03/07 09:38:31.095158 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/03/07 09:38:31.095267 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 469.958µs[0m
+2022/03/07 09:38:31.095650 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/03/07 09:38:31.095945 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/03/07 09:38:31.096130 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 217.647µs[0m
+2022/03/07 09:38:31.096518 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/03/07 09:38:31.097089 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/03/07 09:38:31.097189 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 128.114µs[0m
+2022/03/07 09:38:32.397895 test_test.go:104: [0;37m[info] partition: [1 3 5], [2 4][0m
+2022/03/07 09:38:32.904442 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/03/07 09:38:33.522016 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/03/07 09:38:34.203189 test_test.go:104: [0;37m[info] partition: [1 2], [3 4 5][0m
+2022/03/07 09:38:34.823523 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/03/07 09:38:35.371482 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/03/07 09:38:35.985329 test_test.go:104: [0;37m[info] partition: [3 4], [1 2 5][0m
+2022/03/07 09:38:36.627417 test_test.go:104: [0;37m[info] partition: [1 3], [2 4 5][0m
+2022/03/07 09:38:37.135353 test_test.go:104: [0;37m[info] partition: [1 4 5], [2 3][0m
+2022/03/07 09:38:43.679310 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/03/07 09:38:44.337252 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/03/07 09:38:44.847416 test_test.go:104: [0;37m[info] partition: [3 5], [1 2 4][0m
+2022/03/07 09:38:45.437296 test_test.go:104: [0;37m[info] partition: [1 2 4 5], [3][0m
+2022/03/07 09:38:46.069049 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/03/07 09:38:46.682094 test_test.go:104: [0;37m[info] partition: [1 2 4], [3 5][0m
+2022/03/07 09:38:47.240231 test_test.go:104: [0;37m[info] partition: [2 5], [1 3 4][0m
+2022/03/07 09:38:47.798739 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/03/07 09:38:48.475867 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/03/07 09:39:38.271143 test_test.go:104: [0;37m[info] partition: [2 3 4], [1 5][0m
+2022/03/07 09:39:43.977725 test_test.go:104: [0;37m[info] partition: [3 5], [1 2 4][0m
+panic: test timed out after 10m0s
+
+goroutine 285 [running]:
+testing.(*M).startAlarm.func1()
+	/usr/lib/go-1.13/src/testing/testing.go:1377 +0xdf
+created by time.goFunc
+	/usr/lib/go-1.13/src/time/sleep.go:168 +0x44
+
+goroutine 1 [chan receive, 10 minutes]:
+testing.(*T).Run(0xc000110800, 0xd5b795, 0x1f, 0xd7f640, 0x493a01)
+	/usr/lib/go-1.13/src/testing/testing.go:961 +0x377
+testing.runTests.func1(0xc000110600)
+	/usr/lib/go-1.13/src/testing/testing.go:1202 +0x78
+testing.tRunner(0xc000110600, 0xc00017bdc0)
+	/usr/lib/go-1.13/src/testing/testing.go:909 +0xc9
+testing.runTests(0xc00012f560, 0x134a700, 0x20, 0x20, 0x0)
+	/usr/lib/go-1.13/src/testing/testing.go:1200 +0x2a7
+testing.(*M).Run(0xc00010e700, 0x0)
+	/usr/lib/go-1.13/src/testing/testing.go:1117 +0x176
+main.main()
+	_testmain.go:106 +0x135
+
+goroutine 5 [select]:
+github.com/Connor1996/badger/epoch.(*ResourceManager).collectLoop(0xc0000b8360, 0xc00012e040)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:100 +0x10d
+created by github.com/Connor1996/badger/epoch.NewResourceManager
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/epoch/manager.go:78 +0x84
+
+goroutine 44 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00016e6cc, 0xc00016e600, 0x0)
+	/usr/lib/go-1.13/src/runtime/sema.go:71 +0x47
+sync.(*RWMutex).RLock(...)
+	/usr/lib/go-1.13/src/sync/rwmutex.go:50
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*MockSchedulerClient).IsBootstrapped(0xc00016e6c0, 0xe56c80, 0xc0000b4018, 0xc12af8f500, 0x0, 0x0)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/scheduler.go:147 +0xc8
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*MockSchedulerClient).checkBootstrap(0xc00016e6c0, 0xc00016e6c0, 0xc17c6e1750)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/scheduler.go:153 +0x47
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*MockSchedulerClient).GetRegionByID(0xc00016e6c0, 0xe56c80, 0xc0000b4018, 0x1, 0x0, 0x0, 0x0, 0x0)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/scheduler.go:206 +0x52
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).CallCommandOnLeader(0xc0000b9920, 0xc195519630, 0x12a05f200, 0x10, 0xc17c716280)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:227 +0x4ad
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).Request(0xc0000b9920, 0xc19bdb92f0, 0xa, 0x10, 0xc1c3ff69a8, 0x1, 0x1, 0x12a05f200, 0x64, 0x3)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:190 +0x2fa
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).Scan(0xc0000b9920, 0xc19bdb92f0, 0xa, 0x10, 0xc17c6e1d40, 0xa, 0x20, 0xc17c6e1d60, 0xa, 0x20)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/cluster.go:364 +0x3ed
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.GenericTest(0xc000110800, 0xd45bdc, 0x2, 0x5, 0x62010000, 0xffffffffffffffff, 0x2c21c9dc2d0000)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/test_test.go:280 +0x7e5
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.TestManyPartitionsManyClients2B(0xc000110800)
+	/home/huangqz/codes/repository/tinykv/kv/test_raftstore/test_test.go:408 +0x65
+testing.tRunner(0xc000110800, 0xd7f640)
+	/usr/lib/go-1.13/src/testing/testing.go:909 +0xc9
+created by testing.(*T).Run
+	/usr/lib/go-1.13/src/testing/testing.go:960 +0x350
+
+goroutine 47 [select, 10 minutes]:
+github.com/dgraph-io/ristretto.(*defaultPolicy).processItems(0xc0000ac5a0)
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/policy.go:96 +0xbe
+created by github.com/dgraph-io/ristretto.newDefaultPolicy
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/policy.go:80 +0x129
+
+goroutine 48 [select, 10 minutes]:
+github.com/dgraph-io/ristretto.(*Cache).processItems(0xc000032180)
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/cache.go:250 +0xbc
+created by github.com/dgraph-io/ristretto.NewCache
+	/home/huangqz/workspace/pkg/mod/github.com/dgraph-io/ristretto@v0.0.0-20191010170704-2ba187ef9534/cache.go:152 +0x1f3
+
+goroutine 49 [select, 10 minutes]:
+github.com/Connor1996/badger.Open.func4(0xc0000b63e8)
+	/home/huangqz/workspace/pkg/mod/github.com/!connor1996/badger@v1.5.1-0.20210202034640-5ff470f827f8/db.go:290 +0x162

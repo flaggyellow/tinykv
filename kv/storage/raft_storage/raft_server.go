@@ -64,6 +64,7 @@ func NewRaftStorage(conf *config.Config) *RaftStorage {
 	raftPath := filepath.Join(dbPath, "raft")
 	snapPath := filepath.Join(dbPath, "snap")
 
+	// os.ModePerm meams chmod 777
 	os.MkdirAll(kvPath, os.ModePerm)
 	os.MkdirAll(raftPath, os.ModePerm)
 	os.Mkdir(snapPath, os.ModePerm)

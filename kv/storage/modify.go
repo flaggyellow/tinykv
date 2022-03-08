@@ -1,6 +1,8 @@
 package storage
 
 // Modify is a single modification to TinyKV's underlying storage.
+// H: the data uses an empty interface, means we can put any struct into it.
+// It seems that the program will only put 'Put' or 'Delete' into it.
 type Modify struct {
 	Data interface{}
 }

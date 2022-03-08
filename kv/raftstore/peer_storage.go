@@ -308,6 +308,33 @@ func ClearMeta(engines *engine_util.Engines, kvWB, raftWB *engine_util.WriteBatc
 // never be committed
 func (ps *PeerStorage) Append(entries []eraftpb.Entry, raftWB *engine_util.WriteBatch) error {
 	// Your Code Here (2B).
+	if len(entries) == 0 {
+		return nil
+	}
+	firstIndex, _ := ps.FirstIndex()
+	prelastIndex, _ := ps.LastIndex()
+	if entries[0].Index < firstIndex {
+		entries = entries[firstIndex-entries[0].Index:]
+	}
+	if len(entries) == 0 {
+		return nil
+	}
+	for _, entry := range entries {
+		err := raftWB.SetMeta(meta.RaftLogKey(ps.region.GetId(), entry.Index), &entry)
+		if err != nil {
+			return err
+		}
+	}
+	lastIndex := entries[len(entries)-1].Index
+	if prelastIndex > lastIndex {
+		for index := lastIndex + 1; index <= prelastIndex; index++ {
+			raftWB.DeleteMeta(meta.RaftLogKey(ps.region.GetId(), index))
+		}
+	}
+	if len(entries) > 0 {
+		ps.raftState.LastIndex = entries[len(entries)-1].Index
+		ps.raftState.LastTerm = entries[len(entries)-1].Term
+	}
 	return nil
 }
 
@@ -331,7 +358,31 @@ func (ps *PeerStorage) ApplySnapshot(snapshot *eraftpb.Snapshot, kvWB *engine_ut
 func (ps *PeerStorage) SaveReadyState(ready *raft.Ready) (*ApplySnapResult, error) {
 	// Hint: you may call `Append()` and `ApplySnapshot()` in this function
 	// Your Code Here (2B/2C).
-	return nil, nil
+	if !raft.IsEmptyHardState(ready.HardState) {
+		ps.raftState.HardState = &ready.HardState
+	}
+	raftWB := new(engine_util.WriteBatch)
+	kvWB := new(engine_util.WriteBatch)
+	var result *ApplySnapResult
+	if !raft.IsEmptySnap(&ready.Snapshot) {
+		var err error
+		if result, err = ps.ApplySnapshot(&ready.Snapshot, kvWB, raftWB); err != nil {
+			return result, err
+		}
+		if err = kvWB.WriteToDB(ps.Engines.Kv); err != nil {
+			return result, err
+		}
+	}
+	if err := ps.Append(ready.Entries, raftWB); err != nil {
+		return result, err
+	}
+	if err := raftWB.SetMeta(meta.RaftStateKey(ps.region.Id), ps.raftState); err != nil {
+		return result, err
+	}
+	if err := ps.Engines.WriteRaft(raftWB); err != nil {
+		return result, err
+	}
+	return result, nil
 }
 
 func (ps *PeerStorage) ClearData() {

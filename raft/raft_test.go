@@ -109,9 +109,15 @@ func TestLeaderCycle2AA(t *testing.T) {
 
 		for _, peer := range n.peers {
 			sm := peer.(*Raft)
+			// fmt.Printf("peer%d: %v\n", sm.id, sm)
+			// ind := sm.RaftLog.LastIndex()
+			// ter, _ := sm.RaftLog.Term(ind)
+			// fmt.Printf("peer%d's log: index - %v, term - %v\n", sm.id, ind, ter)
 			if sm.id == campaignerID && sm.State != StateLeader {
 				t.Errorf("campaigning node %d state = %v, want StateLeader",
 					sm.id, sm.State)
+				// fmt.Printf("peer1: %v\n", n.peers[0].(*Raft))
+				// fmt.Printf("peer2: %v\n", n.peers[1].(*Raft))
 			} else if sm.id != campaignerID && sm.State != StateFollower {
 				t.Errorf("after campaign of node %d, "+
 					"node %d had state = %v, want StateFollower",
