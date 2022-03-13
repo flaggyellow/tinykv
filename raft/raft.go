@@ -19,7 +19,7 @@ import (
 
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 
-	// "github.com/pingcap-incubator/tinykv/log"
+	"github.com/pingcap-incubator/tinykv/log"
 
 	"math/rand"
 	"sort"
@@ -620,16 +620,73 @@ func (r *Raft) handlePropose(m pb.Message) {
 // handleSnapshot handle Snapshot RPC request
 func (r *Raft) handleSnapshot(m pb.Message) {
 	// Your Code Here (2C).
+	message := pb.Message{
+		MsgType: pb.MessageType_MsgAppendResponse,
+		From:    r.id,
+		To:      m.From,
+		Reject:  false,
+	}
+	snapShot := m.Snapshot
+	meta := snapShot.Metadata
+	if meta.Index <= r.RaftLog.committed {
+		message.Index = r.RaftLog.committed
+		r.msgs = append(r.msgs, message)
+		return
+	}
+	log.Infof("[handleSnapshot]%d Receive %d snapshot", m.To, m.From)
+	r.becomeFollower(max(meta.Term, r.Term), m.From)
+	r.RaftLog.first = meta.Index + 1
+	r.RaftLog.committed = max(meta.Index, r.RaftLog.committed)
+	r.RaftLog.applied = max(meta.Index, r.RaftLog.applied)
+	r.RaftLog.stabled = meta.Index
+	r.RaftLog.pendingSnapshot = snapShot
+	r.Prs = make(map[uint64]*Progress, len(meta.ConfState.Nodes))
+	for _, node := range meta.ConfState.Nodes {
+		r.Prs[node] = &Progress{}
+	}
+	r.RaftLog.CompactEntires()
+	message.Index = r.RaftLog.committed
+	r.msgs = append(r.msgs, message)
 }
 
 // addNode add a new node to raft group
 func (r *Raft) addNode(id uint64) {
 	// Your Code Here (3A).
+	r.Prs[id] = new(Progress)
+	r.Prs[id].Next = 1
+	r.Prs[id].Match = 0
+	r.sendHeartbeat(id)
 }
 
 // removeNode remove a node from raft group
 func (r *Raft) removeNode(id uint64) {
 	// Your Code Here (3A).
+	delete(r.Prs, id)
+	if len(r.Prs) != 0 {
+		r.checkCommit()
+	}
+}
+
+func (r *Raft) checkCommit() {
+	var match_index []uint64
+	for id := range r.Prs {
+		match_index = append(match_index, r.Prs[id].Match)
+	}
+	sort.Slice(match_index, func(i, j int) bool {
+		return match_index[i] < match_index[j]
+	})
+	half := (len(r.Prs)+1)/2 - 1
+	if term, _ := r.RaftLog.Term(match_index[half]); term < r.Term {
+		return
+	}
+	if match_index[half] > r.RaftLog.committed {
+		r.RaftLog.committed = match_index[half]
+		for peer := range r.Prs {
+			if r.id != peer {
+				r.sendAppend(peer)
+			}
+		}
+	}
 }
 
 //send vote request

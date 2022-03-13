@@ -90,6 +90,22 @@ func newLog(storage Storage) *RaftLog {
 // grow unlimitedly in memory
 func (l *RaftLog) maybeCompact() {
 	// Your Code Here (2C).
+	firstIndex, _ := l.storage.FirstIndex()
+	if l.first < firstIndex {
+		l.first = firstIndex
+		l.CompactEntires()
+	}
+}
+
+func (l *RaftLog) CompactEntires() {
+	if len(l.entries) == 0 {
+		return
+	}
+	if len(l.entries) < int(l.first-l.entries[0].Index) {
+		l.entries = make([]pb.Entry, 0)
+		return
+	}
+	l.entries = l.entries[int(l.first-l.entries[0].Index):]
 }
 
 // unstableEntries return all the unstable entries
@@ -143,7 +159,7 @@ func (l *RaftLog) Term(i uint64) (uint64, error) {
 		return 0, ErrUnavailable
 	}
 	firstIndexOfStorage, _ := l.storage.FirstIndex()
-	if i < firstIndexOfStorage - 1 {
+	if i < firstIndexOfStorage-1 {
 		// maybe in snapshot, don't know how to deal with it.
 		// fmt.Printf("firstIndex: %d\n", firstIndexOfStorage)
 		log.Debugf("Term() returned Errcompacted, the index: %d, firstIndexStorage: %d", i, firstIndexOfStorage)
