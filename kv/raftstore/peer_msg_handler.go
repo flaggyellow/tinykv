@@ -47,11 +47,12 @@ func (d *peerMsgHandler) HandleRaftReady() {
 		return
 	}
 	// Your Code Here (2B).
-	node := d.peer.RaftGroup
+	node := d.RaftGroup
 	if !node.HasReady() {
 		return
 	}
 	ready := node.Ready()
+	// save the ready state
 	d.peerStorage.SaveReadyState(&ready)
 	// 这里暂时不需要管snapshot
 	// apply, err := d.peerStorage.SaveReadyState(&ready)
@@ -67,9 +68,11 @@ func (d *peerMsgHandler) HandleRaftReady() {
 	// 		d.ctx.storeMeta.Unlock()
 	// 	}
 	// }
+	// send the messages that need to be send
 	if len(ready.Messages) != 0 {
 		d.Send(d.ctx.trans, ready.Messages)
 	}
+	// process the committed entries
 	if len(ready.CommittedEntries) > 0 {
 		wb := new(engine_util.WriteBatch)
 		for _, entry := range ready.CommittedEntries {
@@ -78,6 +81,7 @@ func (d *peerMsgHandler) HandleRaftReady() {
 				return
 			}
 		}
+		// renew the apply state
 		d.peerStorage.applyState.AppliedIndex = ready.CommittedEntries[len(ready.CommittedEntries)-1].Index
 		wb.SetMeta(meta.ApplyStateKey(d.regionId), d.peerStorage.applyState)
 		wb.WriteToDB(d.peerStorage.Engines.Kv)
@@ -86,17 +90,25 @@ func (d *peerMsgHandler) HandleRaftReady() {
 }
 
 func (d *peerMsgHandler) process(entry *eraftpb.Entry, wb *engine_util.WriteBatch) {
+	msg := &raft_cmdpb.RaftCmdRequest{}
+	if err := msg.Unmarshal(entry.Data); err != nil {
+		panic(err)
+	}
+	if len(msg.Requests) == 0 {
+		return
+	}
+	d.processRequest(entry, msg, wb)
 	// if entry.EntryType == eraftpb.EntryType_EntryConfChange {
 	// 	d.processConfRequest(entry, wb)
 	// 	return
 	// }
-	msg := new(raft_cmdpb.RaftCmdRequest)
-	if err := msg.Unmarshal(entry.Data); err != nil {
-		panic(err)
-	}
-	if len(msg.Requests) > 0 {
-		d.processRequest(entry, msg, wb)
-	}
+	// msg := new(raft_cmdpb.RaftCmdRequest)
+	// if err := msg.Unmarshal(entry.Data); err != nil {
+	// 	panic(err)
+	// }
+	// if len(msg.Requests) > 0 {
+	// 	d.processRequest(entry, msg, wb)
+	// }
 	// } else if msg.AdminRequest != nil {
 	// 	d.processAdminRequest(entry, msg, wb)
 	// }
@@ -135,8 +147,8 @@ func (d *peerMsgHandler) processRequest(entry *eraftpb.Entry, msg *raft_cmdpb.Ra
 				Put:     new(raft_cmdpb.PutResponse),
 			})
 		case raft_cmdpb.CmdType_Get:
-			// 向前推进，读取到最新写入的数据
 			err := util.CheckKeyInRegion(request.Get.Key, d.Region())
+			// if not found
 			if errKeyNotInRegion, ok := err.(*util.ErrKeyNotInRegion); ok {
 				resp := ErrResp(errKeyNotInRegion)
 				d.handleProcess(resp, entry, func(p *proposal) {
