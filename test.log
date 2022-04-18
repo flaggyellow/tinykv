@@ -1,0 +1,891 @@
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./raft -run 2AB
+=== RUN   TestLeaderStartReplication2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+--- PASS: TestLeaderStartReplication2AB (0.00s)
+=== RUN   TestLeaderCommitEntry2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+--- PASS: TestLeaderCommitEntry2AB (0.00s)
+=== RUN   TestLeaderAcknowledgeCommit2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 1[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+--- PASS: TestLeaderAcknowledgeCommit2AB (0.00s)
+=== RUN   TestLeaderCommitPrecedingEntries2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index0, term0, entries[term:3 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index0, term0, entries[term:3 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index1, term3, entries[term:3 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index1, term3, entries[term:3 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index1, term3, entries[term:3 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index1, term2, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index1, term2, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[term:3 index:4 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[term:3 index:4 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index4, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[term:3 index:4 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index4, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index4, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term3, entries[term:3 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[][0m
+--- PASS: TestLeaderCommitPrecedingEntries2AB (0.00s)
+=== RUN   TestFollowerCommitEntry2AB
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+--- PASS: TestFollowerCommitEntry2AB (0.00s)
+=== RUN   TestFollowerCheckMessageType_MsgAppend2AB
+2022/04/11 11:10:20 raft.go:591: [0;33m[warning] peer 1 handles an old append request with commit 0, it's own commit is 1[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:591: [0;33m[warning] peer 1 handles an old append request with commit 0, it's own commit is 1[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:591: [0;33m[warning] peer 1 handles an old append request with commit 0, it's own commit is 1[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer1 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer1 reject peer2's append, because log not match[0m
+--- PASS: TestFollowerCheckMessageType_MsgAppend2AB (0.00s)
+=== RUN   TestFollowerAppendEntries2AB
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+--- PASS: TestFollowerAppendEntries2AB (0.00s)
+=== RUN   TestLeaderSyncFollowerLog2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index9, term6, entries[term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index9, term6, entries[term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index8, term6, entries[term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index7, term5, entries[term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index6, term5, entries[term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index5, term4, entries[term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index4, term4, entries[term:4 index:5  term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index9, term6, entries[term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index8, term6, entries[term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index7, term5, entries[term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index6, term5, entries[term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index5, term4, entries[term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 9 with index 10[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index9, term6, entries[term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index8, term6, entries[term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index7, term5, entries[term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index6, term5, entries[term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index5, term4, entries[term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index4, term4, entries[term:4 index:5  term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index3, term1, entries[term:4 index:4  term:4 index:5  term:5 index:6  term:5 index:7  term:6 index:8  term:6 index:9  term:6 index:10  term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index10, term6, entries[term:9 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer2, with index12, term9, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 9) send append to peer3, with index11, term9, entries[term:9 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+--- PASS: TestLeaderSyncFollowerLog2AB (0.00s)
+=== RUN   TestVoteRequest2AB
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+--- PASS: TestVoteRequest2AB (0.00s)
+=== RUN   TestVoter2AB
+--- PASS: TestVoter2AB (0.00s)
+=== RUN   TestLeaderOnlyCommitsLogFromCurrentTerm2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[term:3 index:4 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[term:3 index:4 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[term:3 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index4, term3, entries[][0m
+--- PASS: TestLeaderOnlyCommitsLogFromCurrentTerm2AB (0.00s)
+=== RUN   TestProgressLeader2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"foo" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3 data:"foo" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index3, term1, entries[term:1 index:4 data:"foo" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index4, term1, entries[term:1 index:5 data:"foo" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index5, term1, entries[term:1 index:6 data:"foo" ][0m
+--- PASS: TestProgressLeader2AB (0.00s)
+=== RUN   TestLeaderElectionOverwriteNewerLogs2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer4, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer5, with index1, term1, entries[term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer3 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer4 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer5 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index0, term0, entries[term:1 index:1  term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer4, with index0, term0, entries[term:1 index:1  term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer5, with index0, term0, entries[term:1 index:1  term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer4, with index0, term0, entries[term:1 index:1  term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer5, with index0, term0, entries[term:1 index:1  term:3 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+--- PASS: TestLeaderElectionOverwriteNewerLogs2AB (0.00s)
+=== RUN   TestLogReplication2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term1, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term1, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term1, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[term:2 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+--- PASS: TestLogReplication2AB (0.00s)
+=== RUN   TestSingleNodeCommit2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+--- PASS: TestSingleNodeCommit2AB (0.00s)
+=== RUN   TestCommitWithoutNewTermEntry2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 3[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term1, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer4, with index3, term1, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer5, with index3, term1, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term1, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer3 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer4 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer5 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term1, entries[term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer4, with index2, term1, entries[term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer5, with index2, term1, entries[term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer3 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer4 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer5 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data"  term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+--- PASS: TestCommitWithoutNewTermEntry2AB (0.00s)
+=== RUN   TestCommitWithHeartbeat2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index3, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index3, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index2, term1, entries[term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer5 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"some data"  term:1 index:3 data:"some data" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+--- PASS: TestCommitWithHeartbeat2AB (0.00s)
+=== RUN   TestDuelingCandidates2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+--- PASS: TestDuelingCandidates2AB (0.00s)
+=== RUN   TestCandidateConcede2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 3 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer1, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer1, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer1, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer1, with index1, term1, entries[term:1 index:2 data:"force follower" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"force follower" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer1, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer3(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"force follower" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer3's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer3's append[0m
+--- PASS: TestCandidateConcede2AB (0.00s)
+=== RUN   TestOldMessages2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 3 with index 2[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index2, term2, entries[term:3 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:529: [0;36m[debug] peer1 reject peer2's append, because it's term smaller than him[0m
+2022/04/11 11:10:20 raft.go:615: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index3, term3, entries[term:3 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[term:3 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer2, with index4, term3, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 3) send append to peer3, with index3, term3, entries[term:3 index:4 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+--- PASS: TestOldMessages2AB (0.00s)
+=== RUN   TestProposal2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:480: [0;33m[warning] peer 1 state StateCandidate recieve a propose[0m
+2022/04/11 11:10:20 raft.go:480: [0;33m[warning] peer 1 state StateCandidate recieve a propose[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer4, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer5, with index2, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer4 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer5 accept peer1's append[0m
+--- PASS: TestProposal2AB (0.00s)
+=== RUN   TestHandleMessageType_MsgAppend2AB
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer1 reject peer0's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer1 reject peer0's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 4 vs 3[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 4 vs 3[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 4 vs 2[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 4 vs 2[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 3 vs 1[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 3 vs 2[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 3 vs 2[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 3 vs 2[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 3 vs 2[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 3 vs 2[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+2022/04/11 11:10:20 raft.go:582: [0;31m[error] m.Commit is large than the append entry, 4 vs 2[0m
+2022/04/11 11:10:20 raft.go:585: [0;31m[error] m.Commit is large than peer 1 's lastlog, 4 vs 2[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer1 accept peer0's append[0m
+--- PASS: TestHandleMessageType_MsgAppend2AB (0.00s)
+=== RUN   TestRecvMessageType_MsgRequestVote2AB
+--- PASS: TestRecvMessageType_MsgRequestVote2AB (0.00s)
+=== RUN   TestAllServerStepdown2AB
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer1 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer1 reject peer2's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:565: [0;36m[debug] peer1 reject peer2's append, because log not match[0m
+--- PASS: TestAllServerStepdown2AB (0.00s)
+=== RUN   TestHeartbeatUpdateCommit2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[term:1 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index3, term1, entries[term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index3, term1, entries[term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index4, term1, entries[term:1 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index4, term1, entries[term:1 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index5, term1, entries[term:1 index:6 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index5, term1, entries[term:1 index:6 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index5, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 0[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index0, term0, entries[term:1 index:1 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index1, term1, entries[term:1 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index2, term1, entries[term:1 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index3, term1, entries[term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index3, term1, entries[term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index4, term1, entries[term:1 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index4, term1, entries[term:1 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index5, term1, entries[term:1 index:6 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer3, with index5, term1, entries[term:1 index:6 ][0m
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 2 becomeLeader at term 2 with index 1[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index1, term1, entries[term:2 index:2 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index2, term2, entries[term:2 index:3 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index3, term2, entries[term:2 index:4 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index4, term2, entries[term:2 index:5 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index5, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index5, term2, entries[term:2 index:6 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index5, term2, entries[term:2 index:6 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index6, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index5, term2, entries[term:2 index:6 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index6, term2, entries[term:2 index:7 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index6, term2, entries[term:2 index:7 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index7, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index6, term2, entries[term:2 index:7 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index7, term2, entries[term:2 index:8 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index7, term2, entries[term:2 index:8 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index7, term2, entries[term:2 index:8 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index8, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index8, term2, entries[term:2 index:9 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index8, term2, entries[term:2 index:9 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index9, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index8, term2, entries[term:2 index:9 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index9, term2, entries[term:2 index:10 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index9, term2, entries[term:2 index:10 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index9, term2, entries[term:2 index:10 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index10, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index10, term2, entries[term:2 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index10, term2, entries[term:2 index:11 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index10, term2, entries[term:2 index:11 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index11, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index11, term2, entries[term:2 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index11, term2, entries[term:2 index:12 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index11, term2, entries[term:2 index:12 ][0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer3, with index12, term2, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer3 accept peer2's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer2(StateLeader, term 2) send append to peer1, with index11, term2, entries[term:2 index:12 ][0m
+--- PASS: TestHeartbeatUpdateCommit2AB (0.00s)
+=== RUN   TestLeaderIncreaseNext2AB
+2022/04/11 11:10:20 raft.go:379: [0;33m[warning] node 1 becomeLeader at term 1 with index 3[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index3, term1, entries[term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index2, term1, entries[term:1 index:3  term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index1, term1, entries[term:1 index:2  term:1 index:3  term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:550: [0;36m[debug] peer2 reject peer1's append, because log not match[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index0, term0, entries[term:1 index:1  term:1 index:2  term:1 index:3  term:1 index:4 ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index4, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index4, term1, entries[term:1 index:5 data:"somedata" ][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+2022/04/11 11:10:20 raft.go:261: [0;36m[debug] peer1(StateLeader, term 1) send append to peer2, with index5, term1, entries[][0m
+2022/04/11 11:10:20 raft.go:596: [0;36m[debug] peer2 accept peer1's append[0m
+--- PASS: TestLeaderIncreaseNext2AB (0.00s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/raft	0.018s

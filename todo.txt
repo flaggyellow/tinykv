@@ -1,0 +1,7 @@
+1. need to randomize the electionTimeout in somewhere
+2. the Prs is not initialized in the newRaft, we need to do something to make sure it will be initialized.
+3. need to handle with the leader transferee
+4. 在sendheartbeat当中，要求传入的commit不能大于matchindex，为什么？
+如果此时leader刚刚初始化，此时match为0，那岂不是传给对方发commit也为0？
+对端应该怎么样处理commit才算正确？
+5. what will happen if we meet ErrCompacted when handling append?
