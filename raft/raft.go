@@ -22,6 +22,7 @@ import (
 
 	"github.com/pingcap-incubator/tinykv/log"
 
+	"github.com/pingcap-incubator/tinykv/kv/raftstore/meta"
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 )
 
@@ -536,7 +537,8 @@ func (r *Raft) handleAppendEntries(m pb.Message) {
 	} else {
 		// m.Term == r.Term
 		if r.State == StateLeader {
-			panic("handleAppendEntries: there are two leaders in the raft group!")
+			// panic("handleAppendEntries: there are two leaders in the raft group!")
+			log.Errorf("TWOLEADER: peer%d recieve append entries from another leader(peer%d), in term%d", r.id, m.From, r.Term)
 		}
 		// candidate should accept the new leader
 		r.becomeFollower(m.Term, m.From)
@@ -645,7 +647,16 @@ func (r *Raft) handelAppendResponse(m pb.Message) {
 		return matchIndex[i] < matchIndex[j]
 	})
 	half := (len(r.Prs)+1)/2 - 1
-	halfTerm := mustTerm(r.RaftLog.Term(matchIndex[half]))
+	halfTerm, err := r.RaftLog.Term(matchIndex[half])
+	if err == ErrCompacted {
+		if matchIndex[half] <= meta.RaftInitLogIndex {
+			log.Infof("peer %d(%v) handling append response, but less than half nodes have append the first entry", r.id, r.State)
+			return
+		}
+	}
+	if err != nil {
+		panic(err)
+	}
 	if matchIndex[half] > r.RaftLog.committed && halfTerm >= r.Term {
 		r.RaftLog.committed = matchIndex[half]
 		for id := range r.Prs {
@@ -788,7 +799,8 @@ func (r *Raft) handleHeartbeat(m pb.Message) {
 		// m.Term == r.Term
 		// also it sound strange here, but maybe we should do nothing but become a follower
 		if r.State == StateLeader {
-			panic("handleheartBeat: there are more than two leaders in the raft group!")
+			// panic("handleheartBeat: there are more than one leader in the raft group!")
+			log.Errorf(" TWOLEADER : peer%d(%v): recieve heartbeat from another leader(peer%d), in term%d", r.id, r.State, m.From, r.Term)
 		}
 		r.becomeFollower(m.Term, m.From)
 	}

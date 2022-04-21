@@ -6,10 +6,13 @@ import (
 
 	"github.com/Connor1996/badger/y"
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/message"
+	"github.com/pingcap-incubator/tinykv/kv/raftstore/meta"
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/runner"
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/snap"
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/util"
+	"github.com/pingcap-incubator/tinykv/kv/util/engine_util"
 	"github.com/pingcap-incubator/tinykv/log"
+	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 	"github.com/pingcap-incubator/tinykv/proto/pkg/metapb"
 	"github.com/pingcap-incubator/tinykv/proto/pkg/raft_cmdpb"
 	rspb "github.com/pingcap-incubator/tinykv/proto/pkg/raft_serverpb"
@@ -43,6 +46,194 @@ func (d *peerMsgHandler) HandleRaftReady() {
 		return
 	}
 	// Your Code Here (2B).
+	if !d.RaftGroup.HasReady() {
+		return
+	}
+	ready := d.RaftGroup.Ready()
+
+	// send messages
+	if len(ready.Messages) != 0 {
+		d.Send(d.ctx.trans, ready.Messages)
+	}
+	// save the ready state
+	apply, err := d.peerStorage.SaveReadyState(&ready)
+	if err != nil {
+		panic(err)
+	}
+	if apply != nil {
+		d.peerStorage.SetRegion(apply.Region)
+		d.ctx.storeMeta.Lock()
+		d.ctx.storeMeta.regions[d.regionId] = d.Region()
+		d.ctx.storeMeta.regionRanges.ReplaceOrInsert(&regionItem{region: d.Region()})
+		d.ctx.storeMeta.Unlock()
+	}
+
+	// process the committed entries
+	if len(ready.CommittedEntries) > 0 {
+		// here we need to apply the commited entries and give the callback
+		kvWb := new(engine_util.WriteBatch)
+		for _, ent := range ready.CommittedEntries {
+			// there are two type of entries, confchange entry & normal entry
+			// 1. Normal entry
+			if ent.EntryType == pb.EntryType_EntryNormal {
+				// unmarshal
+				msg := new(raft_cmdpb.RaftCmdRequest)
+				if err := msg.Unmarshal(ent.Data); err != nil {
+					panic(err)
+				}
+				// check valid
+				err := d.checkValidEntryRequest(msg)
+				if err != nil {
+					resp := ErrResp(err)
+					log.Warnf("Invalid Request when applying entries, err: %v", err)
+					d.dealWithCallBack(ent, resp, false)
+					continue
+				}
+				// now check the command type
+				if len(msg.Requests) > 0 {
+					// means normal type
+					resp, startTrans, err := d.applyNormalReq(msg, kvWb)
+					if err != nil {
+						panic(err)
+					}
+					d.dealWithCallBack(ent, resp, startTrans)
+				} else if msg.AdminRequest != nil {
+					// admin type
+					log.Panicf("admin request not finished yet")
+				} else {
+					// no-op entry
+					log.Warnf("no-op entry: peer %d, term%d, index%d", d.PeerId(), ent.Term, ent.Index)
+					continue
+				}
+			} else {
+				// 2. confChang entry
+				log.Panicf("conf entry not finished yet")
+			}
+			if d.stopped {
+				return
+			}
+		}
+		// renew the apply state
+		d.peerStorage.applyState.AppliedIndex = ready.CommittedEntries[len(ready.CommittedEntries)-1].Index
+		err := kvWb.SetMeta(meta.ApplyStateKey(d.regionId), d.peerStorage.applyState)
+		if err != nil {
+			panic(err)
+		}
+		kvWb.WriteToDB(d.peerStorage.Engines.Kv)
+	}
+	// call advance
+	d.RaftGroup.Advance(ready)
+}
+
+func (d *peerMsgHandler) checkValidEntryRequest(msg *raft_cmdpb.RaftCmdRequest) error {
+	// check if the normal entry is valid
+	if len(msg.Requests) > 0 {
+		// 1. for normal request:
+		// check in region
+		err := d.checkNormalKeyInRegion(msg)
+		if err != nil {
+			return err
+		}
+	} else if msg.AdminRequest != nil {
+		// 2. for admin request
+		log.Panicf("admin request not finished yet")
+	}
+	// if is no-op request, do nothing
+	return nil
+}
+
+func (d *peerMsgHandler) checkValidConfChange() error {
+	return nil
+}
+
+func (d *peerMsgHandler) applyNormalReq(msg *raft_cmdpb.RaftCmdRequest, kvWB *engine_util.WriteBatch) (*raft_cmdpb.RaftCmdResponse, bool, error) {
+	var responses []*raft_cmdpb.Response
+	startTrans := false
+	for _, request := range msg.Requests {
+		switch request.CmdType {
+		case raft_cmdpb.CmdType_Get:
+			// maybe some value is in the write batch, before we read, we need to write
+			kvWB.MustWriteToDB(d.peerStorage.Engines.Kv)
+			kvWB.Reset()
+			value, err := engine_util.GetCF(d.peerStorage.Engines.Kv, request.Get.Cf, request.Get.Key)
+			if err != nil {
+				panic(err)
+			}
+			responses = append(responses, &raft_cmdpb.Response{
+				CmdType: raft_cmdpb.CmdType_Get,
+				Get:     &raft_cmdpb.GetResponse{Value: value},
+			})
+		case raft_cmdpb.CmdType_Put:
+			kvWB.SetCF(request.Put.Cf, request.Put.Key, request.Put.Value)
+			responses = append(responses, &raft_cmdpb.Response{
+				CmdType: raft_cmdpb.CmdType_Put,
+				Put:     &raft_cmdpb.PutResponse{},
+			})
+		case raft_cmdpb.CmdType_Delete:
+			kvWB.DeleteCF(request.Delete.Cf, request.Delete.Key)
+			responses = append(responses, &raft_cmdpb.Response{
+				CmdType: raft_cmdpb.CmdType_Delete,
+				Delete:  &raft_cmdpb.DeleteResponse{},
+			})
+		case raft_cmdpb.CmdType_Snap:
+			// maybe some value is in the write batch, before we read, we need to write
+			kvWB.MustWriteToDB(d.peerStorage.Engines.Kv)
+			kvWB.Reset()
+			cloneRegion := &metapb.Region{}
+			util.CloneMsg(d.Region(), cloneRegion)
+			responses = append(responses, &raft_cmdpb.Response{
+				CmdType: raft_cmdpb.CmdType_Snap,
+				Snap:    &raft_cmdpb.SnapResponse{Region: cloneRegion},
+			})
+			startTrans = true
+		default:
+			panic("Invalid command type.")
+		}
+	}
+	resp := &raft_cmdpb.RaftCmdResponse{
+		Header:        &raft_cmdpb.RaftResponseHeader{},
+		Responses:     responses,
+		AdminResponse: nil,
+	}
+	return resp, startTrans, nil
+}
+
+func (d *peerMsgHandler) dealWithCallBack(entry pb.Entry, resp *raft_cmdpb.RaftCmdResponse, startTrans bool) error {
+	if entry.EntryType == pb.EntryType_EntryNormal {
+		msg := &raft_cmdpb.RaftCmdRequest{}
+		err := msg.Unmarshal(entry.Data)
+		if err != nil {
+			panic(err)
+		}
+		if len(msg.Requests) == 0 {
+			return nil
+		}
+		for len(d.proposals) > 0 {
+			proposal := d.proposals[0]
+			switch {
+			case proposal.index > entry.Index:
+				return nil
+			case proposal.index < entry.Index:
+				proposal.cb.Done(ErrResp(&util.ErrStaleCommand{}))
+			case proposal.index == entry.Index:
+				if proposal.term != entry.Term {
+					NotifyStaleReq(entry.Term, proposal.cb)
+				} else {
+					// find the right proposal
+					if startTrans {
+						proposal.cb.Txn = d.peerStorage.Engines.Kv.NewTransaction(false)
+					}
+					proposal.cb.Done(resp)
+				}
+			}
+			// anyway we've deal with one proposal
+			d.proposals = d.proposals[1:]
+		}
+		return nil
+	}
+	// here comes conf change
+	log.Panicf("conf change not finished yet")
+	return nil
 }
 
 func (d *peerMsgHandler) HandleMsg(msg message.Msg) {
@@ -114,6 +305,68 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		return
 	}
 	// Your Code Here (2B).
+	// the raft command request will be either normal request or adm request
+	// for 2b, i think we just need to handle with the normal request
+	if len(msg.Requests) > 0 {
+		// normal request
+		data, err := msg.Marshal()
+		if err != nil {
+			panic(err)
+		}
+		// check if the key is in region
+		err = d.checkNormalKeyInRegion(msg)
+		if err != nil {
+			cb.Done(ErrResp(err))
+			log.Warnf("The key is not in region when propose the command.")
+			return
+		}
+		// add for callback
+		d.proposals = append(d.proposals, &proposal{
+			index: d.nextProposalIndex(),
+			term:  d.Term(),
+			cb:    cb,
+		})
+
+		// propose data to raft group
+		err = d.RaftGroup.Propose(data)
+		if err != nil {
+			panic(err)
+		}
+		return
+	}
+	if msg.AdminRequest != nil {
+		// admin request
+		log.Panicf("we can not handle the admin request for now.")
+		return
+	}
+	panic("empty RaftCmdRequest")
+}
+
+func (d *peerMsgHandler) checkNormalKeyInRegion(msg *raft_cmdpb.RaftCmdRequest) error {
+	// only used for normal entry, normal command
+	for _, req := range msg.Requests {
+		var key []byte
+		switch req.CmdType {
+		case raft_cmdpb.CmdType_Get:
+			key = req.Get.Key
+		case raft_cmdpb.CmdType_Put:
+			key = req.Put.Key
+		case raft_cmdpb.CmdType_Delete:
+			key = req.Delete.Key
+		}
+		if req.CmdType != raft_cmdpb.CmdType_Snap {
+			if err := util.CheckKeyInRegion(key, d.Region()); err != nil {
+				return err
+			}
+		}
+		if req.CmdType == raft_cmdpb.CmdType_Snap {
+			if msg.Header.RegionEpoch.Version != d.Region().RegionEpoch.Version {
+				err := &util.ErrEpochNotMatch{}
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 func (d *peerMsgHandler) onTick() {

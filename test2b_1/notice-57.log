@@ -1,0 +1,1293 @@
+rm -rf /tmp/*test-raftstore*
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestBasic2B|| true
+=== RUN   TestBasic2B
+2022/04/21 02:56:18.272240 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:56:18.272618 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 4[0m
+2022/04/21 02:56:18.272715 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 257.067µs[0m
+2022/04/21 02:56:18.273236 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:56:18.273345 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 5[0m
+2022/04/21 02:56:18.273420 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 109.436µs[0m
+2022/04/21 02:56:18.273828 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:56:18.273927 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 1[0m
+2022/04/21 02:56:18.274001 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 111.244µs[0m
+2022/04/21 02:56:18.274421 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:56:18.274529 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 2[0m
+2022/04/21 02:56:18.274604 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 119.097µs[0m
+2022/04/21 02:56:18.275146 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:56:18.275252 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 3[0m
+2022/04/21 02:56:18.275335 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 118.915µs[0m
+2022/04/21 02:56:18.781423 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:56:18.784271 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:56:18.789297 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:56:18.791985 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:56:18.792060 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:56:18.792056 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:56:18.794570 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:56:41.626608 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:56:41.628338 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:56:41.628425 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:56:41.628479 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:56:41.628514 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+--- PASS: TestBasic2B (24.55s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	24.598s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConcurrent2B|| true
+=== RUN   TestConcurrent2B
+2022/04/21 02:56:45.403026 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:56:45.403410 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 1[0m
+2022/04/21 02:56:45.403514 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 258.051µs[0m
+2022/04/21 02:56:45.404029 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:56:45.404129 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 2[0m
+2022/04/21 02:56:45.404207 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 114.1µs[0m
+2022/04/21 02:56:45.404637 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:56:45.404735 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 3[0m
+2022/04/21 02:56:45.404807 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 104.108µs[0m
+2022/04/21 02:56:45.405267 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:56:45.405353 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 4[0m
+2022/04/21 02:56:45.405420 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 98.42µs[0m
+2022/04/21 02:56:45.405862 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:56:45.405972 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 5[0m
+2022/04/21 02:56:45.406038 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 109.152µs[0m
+2022/04/21 02:56:45.909635 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:56:45.914751 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:56:45.922851 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:56:45.922884 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:56:45.922896 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:56:45.923004 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:56:45.923106 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:57:27.183866 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:57:27.189779 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:57:27.197910 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:57:27.198005 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:57:27.198074 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+--- PASS: TestConcurrent2B (43.50s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	43.546s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestUnreliable2B|| true
+=== RUN   TestUnreliable2B
+2022/04/21 02:57:31.341946 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:57:31.342362 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 1[0m
+2022/04/21 02:57:31.342487 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 290.42µs[0m
+2022/04/21 02:57:31.343200 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:57:31.343339 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 2[0m
+2022/04/21 02:57:31.343440 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 148.02µs[0m
+2022/04/21 02:57:31.344142 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:57:31.344273 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 3[0m
+2022/04/21 02:57:31.344375 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 153.417µs[0m
+2022/04/21 02:57:31.345063 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:57:31.345193 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 4[0m
+2022/04/21 02:57:31.345289 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 140.165µs[0m
+2022/04/21 02:57:31.345873 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:57:31.346031 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 >  create peer with ID 5[0m
+2022/04/21 02:57:31.346123 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 133.722µs[0m
+2022/04/21 02:57:31.898894 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:57:31.906087 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:57:31.911940 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:57:31.911951 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:57:31.912037 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:57:31.912009 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:57:31.911950 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:58:01.052581 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:58:01.059890 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:58:01.062432 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:58:01.064900 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:58:01.064934 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+--- PASS: TestUnreliable2B (31.00s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	31.038s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestOnePartition2B|| true
+=== RUN   TestOnePartition2B
+2022/04/21 02:58:04.415956 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:58:04.416380 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:58:04.416503 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 301.709µs[0m
+2022/04/21 02:58:04.417103 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:58:04.417228 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:58:04.417315 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 138.603µs[0m
+2022/04/21 02:58:04.417957 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:58:04.418078 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:58:04.418162 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 132.659µs[0m
+2022/04/21 02:58:04.418791 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:58:04.418906 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:58:04.419036 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 170.166µs[0m
+2022/04/21 02:58:04.419616 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:58:04.419706 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:58:04.419780 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 107.202µs[0m
+2022/04/21 02:58:05.073826 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:58:05.081897 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:05.089825 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:58:05.089844 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:58:05.089916 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:58:05.089829 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:58:05.089950 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:58:05.873340 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 8 with index 8[0m
+2022/04/21 02:58:05.894371 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:05.902038 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term8, index9[0m
+2022/04/21 02:58:05.912314 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term8, index9[0m
+2022/04/21 02:58:05.912371 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term8, index9[0m
+2022/04/21 02:58:06.215788 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term8, index9[0m
+2022/04/21 02:58:06.215800 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term8, index9[0m
+2022/04/21 02:58:06.239670 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:58:06.239743 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:58:06.239782 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:58:06.239826 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:58:06.239885 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+--- PASS: TestOnePartition2B (3.16s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	3.193s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestManyPartitionsOneClient2B|| true
+=== RUN   TestManyPartitionsOneClient2B
+2022/04/21 02:58:09.986106 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:58:09.986442 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:58:09.986541 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 222.398µs[0m
+2022/04/21 02:58:09.987094 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:58:09.987199 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:58:09.987272 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 107.896µs[0m
+2022/04/21 02:58:09.987683 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:58:09.987777 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:58:09.987843 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 99.36µs[0m
+2022/04/21 02:58:09.988409 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:58:09.988545 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:58:09.988650 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 151.8µs[0m
+2022/04/21 02:58:09.989331 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:58:09.989462 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:58:09.989557 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 141.115µs[0m
+2022/04/21 02:58:10.491933 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:58:10.496665 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:10.501584 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:58:10.504357 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:58:10.504401 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:58:10.504425 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:58:10.504446 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:58:11.289949 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/04/21 02:58:11.915127 test_test.go:104: [0;37m[info] partition: [2 4 5], [1 3][0m
+2022/04/21 02:58:12.446363 test_test.go:104: [0;37m[info] partition: [1 2 3 5], [4][0m
+2022/04/21 02:58:12.465646 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 8 with index 60[0m
+2022/04/21 02:58:12.490566 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:12.497215 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term8, index61[0m
+2022/04/21 02:58:12.497263 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term8, index61[0m
+2022/04/21 02:58:12.497240 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term8, index61[0m
+2022/04/21 02:58:12.765028 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term8, index61[0m
+2022/04/21 02:58:13.017557 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/04/21 02:58:13.588814 test_test.go:104: [0;37m[info] partition: [2], [1 3 4 5][0m
+2022/04/21 02:58:13.594349 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 10 with index 67[0m
+2022/04/21 02:58:13.602097 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:13.609857 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term10, index68[0m
+2022/04/21 02:58:13.609862 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term10, index68[0m
+2022/04/21 02:58:13.609877 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term10, index68[0m
+2022/04/21 02:58:13.654186 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term8, index61[0m
+2022/04/21 02:58:13.656895 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term10, index68[0m
+2022/04/21 02:58:14.286112 test_test.go:104: [0;37m[info] partition: [5], [1 2 3 4][0m
+2022/04/21 02:58:14.344693 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:14.344723 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:14.839261 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 11 with index 78[0m
+2022/04/21 02:58:14.843456 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:14.846182 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term11, index79[0m
+2022/04/21 02:58:14.846202 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term11, index79[0m
+2022/04/21 02:58:14.846800 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term11, index79[0m
+2022/04/21 02:58:14.850305 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/04/21 02:58:14.906107 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term10, index68[0m
+2022/04/21 02:58:14.930620 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term11, index79[0m
+2022/04/21 02:58:15.402478 test_test.go:104: [0;37m[info] partition: [1 3 4 5], [2][0m
+2022/04/21 02:58:15.546813 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term11, index79[0m
+2022/04/21 02:58:16.076707 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 02:58:16.691077 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 13 with index 123[0m
+2022/04/21 02:58:16.695887 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:16.742731 raft.go:855: [0;31m[error] peer 1 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:16.742764 raft.go:855: [0;31m[error] peer 1 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:16.804705 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term13, index124[0m
+2022/04/21 02:58:16.804759 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term13, index124[0m
+2022/04/21 02:58:16.804791 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term13, index124[0m
+2022/04/21 02:58:16.804841 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term13, index124[0m
+2022/04/21 02:58:16.880374 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term13, index124[0m
+2022/04/21 02:58:18.647223 test_test.go:104: [0;37m[info] partition: [2 3 4], [1 5][0m
+2022/04/21 02:58:19.284444 test_test.go:104: [0;37m[info] partition: [1 2 4 5], [3][0m
+2022/04/21 02:58:19.905710 test_test.go:104: [0;37m[info] partition: [5], [1 2 3 4][0m
+2022/04/21 02:58:20.191169 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 16 with index 235[0m
+2022/04/21 02:58:20.198850 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:20.204480 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term16, index236[0m
+2022/04/21 02:58:20.204499 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term16, index236[0m
+2022/04/21 02:58:20.204530 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term16, index236[0m
+2022/04/21 02:58:20.416942 test_test.go:104: [0;37m[info] partition: [2 4 5], [1 3][0m
+2022/04/21 02:58:20.758531 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term16, index236[0m
+2022/04/21 02:58:21.066176 test_test.go:104: [0;37m[info] partition: [1 4 5], [2 3][0m
+2022/04/21 02:58:21.585384 test_test.go:104: [0;37m[info] partition: [], [1 2 3 4 5][0m
+2022/04/21 02:58:21.892064 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 19 with index 258[0m
+2022/04/21 02:58:21.898100 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:21.900876 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term19, index259[0m
+2022/04/21 02:58:21.902850 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term19, index259[0m
+2022/04/21 02:58:21.902878 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term19, index259[0m
+2022/04/21 02:58:22.036267 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term19, index259[0m
+2022/04/21 02:58:22.265645 test_test.go:104: [0;37m[info] partition: [], [1 2 3 4 5][0m
+2022/04/21 02:58:22.482041 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term16, index236[0m
+2022/04/21 02:58:22.516913 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term19, index259[0m
+2022/04/21 02:58:22.877829 test_test.go:104: [0;37m[info] partition: [3 4], [1 2 5][0m
+2022/04/21 02:58:23.413122 test_test.go:104: [0;37m[info] partition: [3 4], [1 2 5][0m
+2022/04/21 02:58:24.098234 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:24.693520 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 22 with index 351[0m
+2022/04/21 02:58:24.707247 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:24.712481 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term22, index352[0m
+2022/04/21 02:58:24.712502 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term22, index352[0m
+2022/04/21 02:58:24.712490 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term22, index352[0m
+2022/04/21 02:58:25.097005 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term22, index352[0m
+2022/04/21 02:58:25.099212 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term22, index352[0m
+2022/04/21 02:58:26.679269 test_test.go:104: [0;37m[info] partition: [4], [1 2 3 5][0m
+2022/04/21 02:58:27.344517 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/04/21 02:58:27.858680 test_test.go:104: [0;37m[info] partition: [2 3 4], [1 5][0m
+2022/04/21 02:58:28.467873 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/04/21 02:58:28.998053 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/04/21 02:58:29.092577 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 26 with index 524[0m
+2022/04/21 02:58:29.102192 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:29.414972 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term26, index525[0m
+2022/04/21 02:58:29.415069 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term26, index525[0m
+2022/04/21 02:58:29.473102 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term26, index525[0m
+2022/04/21 02:58:29.626287 test_test.go:104: [0;37m[info] partition: [1 3 4 5], [2][0m
+2022/04/21 02:58:30.094480 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 29 with index 535[0m
+2022/04/21 02:58:30.099444 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:30.104618 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term29, index536[0m
+2022/04/21 02:58:30.106895 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term29, index536[0m
+2022/04/21 02:58:30.106995 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term29, index536[0m
+2022/04/21 02:58:30.147532 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 02:58:30.405213 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term26, index525[0m
+2022/04/21 02:58:30.413275 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term29, index536[0m
+2022/04/21 02:58:30.701676 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/04/21 02:58:31.236827 test_test.go:104: [0;37m[info] partition: [1 2 5], [3 4][0m
+2022/04/21 02:58:31.792704 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 32 with index 567[0m
+2022/04/21 02:58:31.799911 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:31.909596 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term32, index568[0m
+2022/04/21 02:58:31.911905 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term32, index568[0m
+2022/04/21 02:58:31.911920 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term32, index568[0m
+2022/04/21 02:58:31.914268 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term32, index568[0m
+2022/04/21 02:58:32.015122 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term26, index525[0m
+2022/04/21 02:58:32.029925 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term29, index536[0m
+2022/04/21 02:58:32.069515 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term32, index568[0m
+2022/04/21 02:58:33.414983 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:58:33.422576 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:58:33.422637 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:58:33.422683 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:58:33.422726 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestManyPartitionsOneClient2B (24.64s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	24.700s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestManyPartitionsManyClients2B|| true
+=== RUN   TestManyPartitionsManyClients2B
+2022/04/21 02:58:36.995413 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:58:36.995728 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:58:36.995830 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 232.132µs[0m
+2022/04/21 02:58:36.996328 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:58:36.996428 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:58:36.996484 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 88.075µs[0m
+2022/04/21 02:58:36.996884 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:58:36.996971 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:58:36.997024 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 81.822µs[0m
+2022/04/21 02:58:36.997415 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:58:36.997500 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:58:36.997585 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 115.198µs[0m
+2022/04/21 02:58:36.998014 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:58:36.998098 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:58:36.998154 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 85.421µs[0m
+2022/04/21 02:58:37.548052 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:58:37.557971 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:37.565011 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:58:37.565028 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:58:37.565052 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:58:37.565072 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:58:37.565043 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:58:38.298678 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 02:58:38.905093 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 7 with index 67[0m
+2022/04/21 02:58:38.908220 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:38.913392 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term7, index68[0m
+2022/04/21 02:58:38.916062 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term7, index68[0m
+2022/04/21 02:58:38.916178 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term7, index68[0m
+2022/04/21 02:58:38.995928 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 02:58:39.506169 test_test.go:104: [0;37m[info] partition: [1 3 4 5], [2][0m
+2022/04/21 02:58:39.850654 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 8 with index 68[0m
+2022/04/21 02:58:39.856373 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:39.863675 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term7, index68[0m
+2022/04/21 02:58:39.863711 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term7, index68[0m
+2022/04/21 02:58:39.869226 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term8, index69[0m
+2022/04/21 02:58:39.869226 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term8, index69[0m
+2022/04/21 02:58:39.874210 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term8, index69[0m
+2022/04/21 02:58:39.874233 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term8, index69[0m
+2022/04/21 02:58:40.040395 test_test.go:104: [0;37m[info] partition: [2 3 4 5], [1][0m
+2022/04/21 02:58:40.057649 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term8, index69[0m
+2022/04/21 02:58:40.677651 test_test.go:104: [0;37m[info] partition: [2 3 4], [1 5][0m
+2022/04/21 02:58:41.238816 test_test.go:104: [0;37m[info] partition: [2 5], [1 3 4][0m
+2022/04/21 02:58:41.264717 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:41.264753 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:41.264765 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:41.264781 raft.go:855: [0;31m[error] peer 3 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:41.264793 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:41.795084 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/04/21 02:58:42.383232 test_test.go:104: [0;37m[info] partition: [1 2 5], [3 4][0m
+2022/04/21 02:58:42.500549 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 12 with index 187[0m
+2022/04/21 02:58:42.864824 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:42.979400 test_test.go:104: [0;37m[info] partition: [1 2 4 5], [3][0m
+2022/04/21 02:58:43.044227 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term12, index188[0m
+2022/04/21 02:58:43.046372 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term12, index188[0m
+2022/04/21 02:58:43.046396 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term12, index188[0m
+2022/04/21 02:58:43.596881 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term12, index188[0m
+2022/04/21 02:58:44.451312 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 15 with index 237[0m
+2022/04/21 02:58:44.456577 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:44.461512 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term15, index238[0m
+2022/04/21 02:58:44.469373 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term15, index238[0m
+2022/04/21 02:58:44.469438 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term15, index238[0m
+2022/04/21 02:58:44.469443 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term15, index238[0m
+2022/04/21 02:58:44.907058 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term12, index188[0m
+2022/04/21 02:58:44.991115 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term15, index238[0m
+2022/04/21 02:58:47.137970 test_test.go:104: [0;37m[info] partition: [3 4], [1 2 5][0m
+2022/04/21 02:58:47.779144 test_test.go:104: [0;37m[info] partition: [2 5], [1 3 4][0m
+2022/04/21 02:58:48.314418 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 02:58:48.552261 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 16 with index 539[0m
+2022/04/21 02:58:48.992612 test_test.go:104: [0;37m[info] partition: [1 2 3], [4 5][0m
+2022/04/21 02:58:49.060447 raft.go:855: [0;31m[error] peer 1 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:49.085449 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 535, it's own commit is 539[0m
+2022/04/21 02:58:49.090125 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:49.192255 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term16, index540[0m
+2022/04/21 02:58:49.192261 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term16, index540[0m
+2022/04/21 02:58:49.277644 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term16, index540[0m
+2022/04/21 02:58:49.604959 test_test.go:104: [0;37m[info] partition: [3 4], [1 2 5][0m
+2022/04/21 02:58:49.910691 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term16, index540[0m
+2022/04/21 02:58:50.292153 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/04/21 02:58:50.831341 test_test.go:104: [0;37m[info] partition: [1 3], [2 4 5][0m
+2022/04/21 02:58:50.853425 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:58:51.485521 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 02:58:52.148974 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 22 with index 651[0m
+2022/04/21 02:58:52.208677 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208716 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208729 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208739 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208750 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208760 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.208770 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.213500 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.213521 raft.go:616: [0;33m[warning] peer 1 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:52.501414 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 24 with index 651[0m
+2022/04/21 02:58:52.509282 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:52.550875 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term24, index652[0m
+2022/04/21 02:58:52.553508 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term24, index652[0m
+2022/04/21 02:58:52.553521 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term24, index652[0m
+2022/04/21 02:58:52.956455 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term24, index652[0m
+2022/04/21 02:58:54.377234 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term16, index540[0m
+2022/04/21 02:58:54.523773 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term24, index652[0m
+2022/04/21 02:58:56.017702 test_test.go:104: [0;37m[info] partition: [1 2 3], [4 5][0m
+2022/04/21 02:58:56.667934 test_test.go:104: [0;37m[info] partition: [1 3], [2 4 5][0m
+2022/04/21 02:58:56.685726 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.685764 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.685777 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.685787 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.685807 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.685818 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.690844 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.690862 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:56.690869 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:57.251757 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 27 with index 949[0m
+2022/04/21 02:58:57.286135 test_test.go:104: [0;37m[info] partition: [1 2 3], [4 5][0m
+2022/04/21 02:58:57.382429 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:57.391293 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term27, index950[0m
+2022/04/21 02:58:57.391332 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term27, index950[0m
+2022/04/21 02:58:57.396477 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term27, index950[0m
+2022/04/21 02:58:57.856490 test_test.go:104: [0;37m[info] partition: [1 2 4], [3 5][0m
+2022/04/21 02:58:57.889314 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 02:58:58.515630 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/04/21 02:58:58.800007 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 30 with index 1021[0m
+2022/04/21 02:58:58.800069 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.802784 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.907340 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.907384 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.907401 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.907416 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.907462 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.907480 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 1019, it's own commit is 1021[0m
+2022/04/21 02:58:58.911875 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.911908 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.911922 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.911934 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.911945 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:58.911956 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:59.037811 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/04/21 02:58:59.499631 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 30 with index 1021[0m
+2022/04/21 02:58:59.504571 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:58:59.630956 test_test.go:104: [0;37m[info] partition: [3 4 5], [1 2][0m
+2022/04/21 02:58:59.905633 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:00.224221 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/04/21 02:59:00.297159 raft.go:802: [0;31m[error]  TWOLEADER : peer3(StateLeader): recieve heartbeat from another leader(peer2)[0m
+2022/04/21 02:59:00.308548 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term30, index1022[0m
+2022/04/21 02:59:00.310885 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term30, index1022[0m
+2022/04/21 02:59:00.749130 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 31 with index 1023[0m
+2022/04/21 02:59:00.783442 test_test.go:104: [0;37m[info] partition: [1 3], [2 4 5][0m
+2022/04/21 02:59:00.799553 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:59:00.849212 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:00.851740 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:00.901013 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:00.903698 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:00.906105 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:00.906141 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:00.908480 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:00.908517 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:00.910912 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:00.910947 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:01.309388 raft.go:592: [0;33m[warning] peer 3 handles an old append request with commit 1021, it's own commit is 1023[0m
+2022/04/21 02:59:01.314574 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:01.549143 raft.go:855: [0;31m[error] peer 1 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:59:01.549171 raft.go:855: [0;31m[error] peer 1 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 02:59:01.753441 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 33 with index 1024[0m
+2022/04/21 02:59:01.764391 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:01.764513 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term30, index1022[0m
+2022/04/21 02:59:01.772533 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term33, index1025[0m
+2022/04/21 02:59:01.778318 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term33, index1025[0m
+2022/04/21 02:59:01.783817 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term33, index1025[0m
+2022/04/21 02:59:03.568331 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term27, index950[0m
+2022/04/21 02:59:03.591986 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term27, index950[0m
+2022/04/21 02:59:03.655928 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term30, index1022[0m
+2022/04/21 02:59:03.663990 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term33, index1025[0m
+2022/04/21 02:59:03.682138 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term30, index1022[0m
+2022/04/21 02:59:03.687502 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term33, index1025[0m
+2022/04/21 02:59:04.460705 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:04.465423 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:04.468354 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:04.470745 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:04.470827 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestManyPartitionsManyClients2B (28.68s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	28.771s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistOneClient2B|| true
+=== RUN   TestPersistOneClient2B
+2022/04/21 02:59:08.164744 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:08.165107 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:08.165205 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 239.013µs[0m
+2022/04/21 02:59:08.165639 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:08.165749 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:08.165806 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 96.719µs[0m
+2022/04/21 02:59:08.166191 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:08.166276 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:08.166337 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 89.551µs[0m
+2022/04/21 02:59:08.166692 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:08.166783 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:08.166849 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 96.366µs[0m
+2022/04/21 02:59:08.167221 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:08.167332 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:08.167401 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 101.069µs[0m
+2022/04/21 02:59:08.669977 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:59:08.678178 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:08.683900 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:59:08.683941 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:59:08.683918 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:59:08.683909 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:59:08.683920 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:59:14.174639 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 02:59:14.174674 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:14.182710 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:14.182849 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:14.182884 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:14.187662 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:59:14.687894 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 02:59:14.688645 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:14.688867 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:14.689222 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 442.986µs[0m
+2022/04/21 02:59:14.689972 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:14.690134 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:14.690481 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 410.188µs[0m
+2022/04/21 02:59:14.691259 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:14.691449 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:14.691679 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 309.184µs[0m
+2022/04/21 02:59:14.692192 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:14.692301 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:14.692525 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 262.417µs[0m
+2022/04/21 02:59:14.692958 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:14.693050 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:14.693290 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 273.577µs[0m
+2022/04/21 02:59:15.202700 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 7 with index 292[0m
+2022/04/21 02:59:15.208050 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:15.216341 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term7, index293[0m
+2022/04/21 02:59:15.216357 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term7, index293[0m
+2022/04/21 02:59:15.216361 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term7, index293[0m
+2022/04/21 02:59:15.216365 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term7, index293[0m
+2022/04/21 02:59:15.221985 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term7, index293[0m
+2022/04/21 02:59:22.806482 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 02:59:22.806535 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:22.817108 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:22.817189 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:22.817224 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:22.817246 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:59:23.317471 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 02:59:23.318174 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:23.318418 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:23.319074 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 776.312µs[0m
+2022/04/21 02:59:23.319782 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:23.319924 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:23.320599 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 726.557µs[0m
+2022/04/21 02:59:23.321225 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:23.321373 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:23.321994 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 676.143µs[0m
+2022/04/21 02:59:23.322642 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:23.322785 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:23.323518 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 786.102µs[0m
+2022/04/21 02:59:23.324197 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:23.324325 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:23.324991 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 714.527µs[0m
+2022/04/21 02:59:23.825955 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 8 with index 717[0m
+2022/04/21 02:59:23.831965 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:23.834663 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term8, index718[0m
+2022/04/21 02:59:23.834753 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term8, index718[0m
+2022/04/21 02:59:23.834755 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term8, index718[0m
+2022/04/21 02:59:23.837263 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term8, index718[0m
+2022/04/21 02:59:23.837375 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term8, index718[0m
+2022/04/21 02:59:31.229089 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 02:59:31.229173 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:31.236620 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:31.236691 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:31.236755 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:31.239349 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:59:31.739556 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 02:59:31.740210 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:31.740436 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:31.741374 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 1.042356ms[0m
+2022/04/21 02:59:31.741861 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:31.741970 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:31.742631 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 700.818µs[0m
+2022/04/21 02:59:31.743178 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:31.743298 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:31.743978 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 735.048µs[0m
+2022/04/21 02:59:31.744433 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:31.744530 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:31.745178 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 686.331µs[0m
+2022/04/21 02:59:31.745672 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:31.745768 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:31.746433 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 702.196µs[0m
+2022/04/21 02:59:32.299117 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 9 with index 1147[0m
+2022/04/21 02:59:32.307604 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:32.315958 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term9, index1148[0m
+2022/04/21 02:59:32.315962 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term9, index1148[0m
+2022/04/21 02:59:32.316015 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term9, index1148[0m
+2022/04/21 02:59:32.315980 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term9, index1148[0m
+2022/04/21 02:59:32.315999 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term9, index1148[0m
+2022/04/21 02:59:34.875995 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:34.881026 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:34.883389 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:34.883422 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:34.886016 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestPersistOneClient2B (28.19s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	28.251s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistConcurrent2B|| true
+=== RUN   TestPersistConcurrent2B
+2022/04/21 02:59:38.948700 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:38.949169 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:38.949335 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 367.56µs[0m
+2022/04/21 02:59:38.950107 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:38.950301 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:38.950425 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 186.343µs[0m
+2022/04/21 02:59:38.951237 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:38.951408 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:38.951531 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 191.452µs[0m
+2022/04/21 02:59:38.952206 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:38.952354 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:38.952485 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 194.161µs[0m
+2022/04/21 02:59:38.953091 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:38.953234 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:38.953349 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 159.774µs[0m
+2022/04/21 02:59:39.560119 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 6 with index 5[0m
+2022/04/21 02:59:39.565312 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:39.573511 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 02:59:39.573551 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 02:59:39.573599 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 02:59:39.573572 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 02:59:39.573537 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 02:59:44.969626 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 02:59:44.969669 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:44.975019 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:44.975089 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:44.975158 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:44.975205 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:59:45.475416 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 02:59:45.476116 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:45.476357 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:45.477120 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 860.603µs[0m
+2022/04/21 02:59:45.477818 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:45.477997 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:45.478708 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 763.411µs[0m
+2022/04/21 02:59:45.479462 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:45.479616 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:45.480090 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 521.887µs[0m
+2022/04/21 02:59:45.480515 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:45.480635 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:45.481107 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 505.32µs[0m
+2022/04/21 02:59:45.481550 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:45.481670 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:45.482172 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 536.452µs[0m
+2022/04/21 02:59:46.081744 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 7 with index 833[0m
+2022/04/21 02:59:46.089563 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:46.092378 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term7, index834[0m
+2022/04/21 02:59:46.095210 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term7, index834[0m
+2022/04/21 02:59:46.095261 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term7, index834[0m
+2022/04/21 02:59:46.095285 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term7, index834[0m
+2022/04/21 02:59:46.095238 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term7, index834[0m
+2022/04/21 02:59:58.563146 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 02:59:58.563193 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 02:59:58.567901 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 02:59:58.570760 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 02:59:58.570820 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 02:59:58.570861 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 02:59:59.076234 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 02:59:59.076949 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 02:59:59.077176 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 02:59:59.078666 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 1.574082ms[0m
+2022/04/21 02:59:59.079175 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 02:59:59.079288 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 02:59:59.080431 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 1.186347ms[0m
+2022/04/21 02:59:59.080869 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 02:59:59.080971 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 02:59:59.082091 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 1.153946ms[0m
+2022/04/21 02:59:59.082537 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 02:59:59.082640 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 02:59:59.083835 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 1.233121ms[0m
+2022/04/21 02:59:59.084295 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 02:59:59.084396 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 02:59:59.085524 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 1.161938ms[0m
+2022/04/21 02:59:59.585696 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 8 with index 2173[0m
+2022/04/21 02:59:59.593767 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 02:59:59.599907 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term8, index2174[0m
+2022/04/21 02:59:59.599939 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term8, index2174[0m
+2022/04/21 02:59:59.599917 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term8, index2174[0m
+2022/04/21 02:59:59.599943 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term8, index2174[0m
+2022/04/21 02:59:59.599944 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term8, index2174[0m
+2022/04/21 03:00:13.059737 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:00:13.059789 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:13.067569 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:13.070104 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:13.070186 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:13.070248 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:00:13.570497 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:00:13.571366 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:00:13.571658 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:00:13.574381 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 2.867159ms[0m
+2022/04/21 03:00:13.575092 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:00:13.575253 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:00:13.577263 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 2.07626ms[0m
+2022/04/21 03:00:13.577817 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:00:13.577942 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:00:13.579767 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 1.872313ms[0m
+2022/04/21 03:00:13.580227 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:00:13.580345 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:00:13.582217 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 1.918958ms[0m
+2022/04/21 03:00:13.582681 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:00:13.582791 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:00:13.584695 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 1.944839ms[0m
+2022/04/21 03:00:14.237747 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 9 with index 3527[0m
+2022/04/21 03:00:14.245993 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:14.254263 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term9, index3528[0m
+2022/04/21 03:00:14.254318 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term9, index3528[0m
+2022/04/21 03:00:14.254357 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term9, index3528[0m
+2022/04/21 03:00:14.254365 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term9, index3528[0m
+2022/04/21 03:00:14.254380 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term9, index3528[0m
+2022/04/21 03:00:21.956775 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:21.963169 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:21.969292 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:21.969378 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:21.969451 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestPersistConcurrent2B (44.44s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	44.523s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistConcurrentUnreliable2B|| true
+=== RUN   TestPersistConcurrentUnreliable2B
+2022/04/21 03:00:25.781384 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:00:25.781697 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:00:25.781787 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 223.801µs[0m
+2022/04/21 03:00:25.782221 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:00:25.782320 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:00:25.782384 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 93.067µs[0m
+2022/04/21 03:00:25.782730 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:00:25.782814 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:00:25.782886 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 100.212µs[0m
+2022/04/21 03:00:25.783241 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:00:25.783330 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:00:25.783397 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 95.768µs[0m
+2022/04/21 03:00:25.783746 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:00:25.783830 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:00:25.783899 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 96.633µs[0m
+2022/04/21 03:00:26.289085 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 6 with index 5[0m
+2022/04/21 03:00:26.297416 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:26.303172 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 03:00:26.303213 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 03:00:26.303198 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 03:00:26.303238 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 03:00:26.303227 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 03:00:32.638955 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 10 with index 373[0m
+2022/04/21 03:00:32.658326 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:32.689455 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term10, index374[0m
+2022/04/21 03:00:32.689479 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term10, index374[0m
+2022/04/21 03:00:32.689480 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term10, index374[0m
+2022/04/21 03:00:32.694985 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term10, index374[0m
+2022/04/21 03:00:32.763989 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term10, index374[0m
+2022/04/21 03:00:33.002752 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:00:33.002792 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:33.002834 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:33.002873 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:33.002904 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:33.002952 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:00:33.503075 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:00:33.503704 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:00:33.503959 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:00:33.504328 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 495.915µs[0m
+2022/04/21 03:00:33.504920 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:00:33.505057 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:00:33.505389 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 383.777µs[0m
+2022/04/21 03:00:33.505954 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:00:33.506084 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:00:33.506425 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 390.242µs[0m
+2022/04/21 03:00:33.507042 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:00:33.507164 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:00:33.507510 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 393.84µs[0m
+2022/04/21 03:00:33.508052 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:00:33.508164 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:00:33.508489 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 367.336µs[0m
+2022/04/21 03:00:34.011745 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 11 with index 379[0m
+2022/04/21 03:00:34.017449 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:34.022979 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term11, index380[0m
+2022/04/21 03:00:34.022980 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term11, index380[0m
+2022/04/21 03:00:34.022978 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term11, index380[0m
+2022/04/21 03:00:34.022982 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term11, index380[0m
+2022/04/21 03:00:34.022971 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term11, index380[0m
+2022/04/21 03:00:43.654639 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:00:43.654694 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:43.654766 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:43.654839 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:43.654906 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:43.654957 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:00:44.155151 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:00:44.155877 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:00:44.156099 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:00:44.156892 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 889.076µs[0m
+2022/04/21 03:00:44.157544 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:00:44.157695 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:00:44.158423 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 796.472µs[0m
+2022/04/21 03:00:44.159055 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:00:44.159195 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:00:44.159921 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 778.343µs[0m
+2022/04/21 03:00:44.160536 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:00:44.160673 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:00:44.161391 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 776.052µs[0m
+2022/04/21 03:00:44.162034 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:00:44.162154 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:00:44.162878 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 770.039µs[0m
+2022/04/21 03:00:44.662386 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 12 with index 967[0m
+2022/04/21 03:00:44.670465 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:44.675907 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term12, index968[0m
+2022/04/21 03:00:44.675987 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term12, index968[0m
+2022/04/21 03:00:44.676037 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term12, index968[0m
+2022/04/21 03:00:44.678544 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term12, index968[0m
+2022/04/21 03:00:44.678562 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term12, index968[0m
+2022/04/21 03:00:54.623942 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:00:54.624026 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:54.624103 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:54.624162 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:54.624195 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:54.624233 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:00:55.124452 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:00:55.125178 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:00:55.125425 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:00:55.126698 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 1.363739ms[0m
+2022/04/21 03:00:55.127380 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:00:55.127557 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:00:55.128839 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 1.364912ms[0m
+2022/04/21 03:00:55.129482 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:00:55.129621 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:00:55.130942 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 1.377633ms[0m
+2022/04/21 03:00:55.131648 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:00:55.131789 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:00:55.133114 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 1.378516ms[0m
+2022/04/21 03:00:55.133766 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:00:55.133895 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:00:55.135197 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 1.351966ms[0m
+2022/04/21 03:00:55.738223 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 13 with index 1588[0m
+2022/04/21 03:00:55.743087 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:00:55.751131 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term13, index1589[0m
+2022/04/21 03:00:55.751166 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term13, index1589[0m
+2022/04/21 03:00:55.751130 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term13, index1589[0m
+2022/04/21 03:00:55.751152 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term13, index1589[0m
+2022/04/21 03:00:55.753622 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term13, index1589[0m
+2022/04/21 03:00:59.487019 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:00:59.494737 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:00:59.494865 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:00:59.495006 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:00:59.495098 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestPersistConcurrentUnreliable2B (35.23s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	35.350s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistPartition2B|| true
+=== RUN   TestPersistPartition2B
+2022/04/21 03:01:03.285202 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:03.285626 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:01:03.285782 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 333.556µs[0m
+2022/04/21 03:01:03.286520 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:03.286679 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:01:03.286803 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 176.906µs[0m
+2022/04/21 03:01:03.287497 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:03.287614 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:01:03.287690 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 116.826µs[0m
+2022/04/21 03:01:03.288214 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:03.288330 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:01:03.288402 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 123.114µs[0m
+2022/04/21 03:01:03.288892 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:03.288991 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:01:03.289074 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 118.908µs[0m
+2022/04/21 03:01:03.788891 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 6 with index 5[0m
+2022/04/21 03:01:03.796836 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:03.801608 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 03:01:03.801682 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 03:01:03.804105 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 03:01:03.804171 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 03:01:03.804188 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 03:01:04.589570 test_test.go:104: [0;37m[info] partition: [5], [1 2 3 4][0m
+2022/04/21 03:01:05.258813 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 03:01:05.942035 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/04/21 03:01:05.960527 raft.go:616: [0;33m[warning] peer 4 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:05.960596 raft.go:616: [0;33m[warning] peer 4 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:05.965597 raft.go:616: [0;33m[warning] peer 4 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:06.439676 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 10 with index 298[0m
+2022/04/21 03:01:06.447586 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.593205 test_test.go:104: [0;37m[info] partition: [1], [2 3 4 5][0m
+2022/04/21 03:01:06.946485 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.946532 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.953637 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.953677 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.953691 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:06.961577 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:07.213087 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term10, index299[0m
+2022/04/21 03:01:07.213132 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term10, index299[0m
+2022/04/21 03:01:07.265417 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 03:01:07.386276 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term10, index299[0m
+2022/04/21 03:01:07.789769 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/04/21 03:01:08.209658 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term10, index299[0m
+2022/04/21 03:01:08.245465 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 12 with index 359[0m
+2022/04/21 03:01:08.257980 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:08.464958 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 03:01:08.791316 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:08.796858 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:08.807121 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:08.807164 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:08.829468 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:09.035181 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 03:01:09.739404 raft.go:855: [0;31m[error] peer 4 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:09.744236 raft.go:855: [0;31m[error] peer 4 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:09.771622 raft.go:592: [0;33m[warning] peer 1 handles an old append request with commit 357, it's own commit is 359[0m
+2022/04/21 03:01:09.782213 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term12, index360[0m
+2022/04/21 03:01:09.784988 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term12, index360[0m
+2022/04/21 03:01:09.785013 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term12, index360[0m
+2022/04/21 03:01:09.785102 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term12, index360[0m
+2022/04/21 03:01:10.029181 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term10, index299[0m
+2022/04/21 03:01:10.075358 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term12, index360[0m
+2022/04/21 03:01:10.202610 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:01:10.202662 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:10.202723 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:10.202763 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:10.202815 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:10.202868 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:01:10.703082 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:01:10.703477 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:10.703622 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:01:10.703870 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 300.647µs[0m
+2022/04/21 03:01:10.704292 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:10.704396 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:01:10.704636 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 280.711µs[0m
+2022/04/21 03:01:10.705056 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:10.705150 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:01:10.705377 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 257.289µs[0m
+2022/04/21 03:01:10.705864 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:10.705977 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:01:10.706206 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 262.842µs[0m
+2022/04/21 03:01:10.706692 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:10.706799 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:01:10.707080 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 311.146µs[0m
+2022/04/21 03:01:11.258072 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 13 with index 367[0m
+2022/04/21 03:01:11.263142 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:11.268822 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term13, index368[0m
+2022/04/21 03:01:11.268864 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term13, index368[0m
+2022/04/21 03:01:11.268844 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term13, index368[0m
+2022/04/21 03:01:11.274318 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term13, index368[0m
+2022/04/21 03:01:11.274322 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term13, index368[0m
+2022/04/21 03:01:14.584000 test_test.go:104: [0;37m[info] partition: [3 5], [1 2 4][0m
+2022/04/21 03:01:15.133241 test_test.go:104: [0;37m[info] partition: [1 2 3 4 5], [][0m
+2022/04/21 03:01:15.697483 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/04/21 03:01:16.236714 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 03:01:16.710581 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 15 with index 794[0m
+2022/04/21 03:01:16.748267 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:16.761440 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term15, index795[0m
+2022/04/21 03:01:16.767957 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term15, index795[0m
+2022/04/21 03:01:16.770051 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term15, index795[0m
+2022/04/21 03:01:16.935987 test_test.go:104: [0;37m[info] partition: [2 3 4 5], [1][0m
+2022/04/21 03:01:16.966937 raft.go:855: [0;31m[error] peer 2 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:17.023530 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term15, index795[0m
+2022/04/21 03:01:17.023593 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term15, index795[0m
+2022/04/21 03:01:17.613175 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/04/21 03:01:18.160240 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 17 with index 821[0m
+2022/04/21 03:01:18.165023 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:18.169847 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term17, index822[0m
+2022/04/21 03:01:18.172302 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term17, index822[0m
+2022/04/21 03:01:18.174602 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term17, index822[0m
+2022/04/21 03:01:18.229392 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/04/21 03:01:18.264929 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term17, index822[0m
+2022/04/21 03:01:18.840571 test_test.go:104: [0;37m[info] partition: [2 4 5], [1 3][0m
+2022/04/21 03:01:19.516711 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/04/21 03:01:20.062018 raft.go:855: [0;31m[error] peer 5 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:20.062058 raft.go:855: [0;31m[error] peer 5 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:20.062070 raft.go:855: [0;31m[error] peer 5 get a validate heartbeat responce but is not the leader.[0m
+2022/04/21 03:01:20.259497 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 21 with index 920[0m
+2022/04/21 03:01:20.265025 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:20.267969 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term21, index921[0m
+2022/04/21 03:01:20.273491 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term21, index921[0m
+2022/04/21 03:01:20.273554 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term21, index921[0m
+2022/04/21 03:01:20.530841 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:01:20.530875 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:20.533223 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:20.535697 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:20.535764 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:20.538176 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:01:21.038302 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:01:21.038951 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:21.039190 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:01:21.039826 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 728.677µs[0m
+2022/04/21 03:01:21.040451 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:21.040591 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:01:21.041245 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 700.616µs[0m
+2022/04/21 03:01:21.041826 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:21.041958 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:01:21.042588 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 684.045µs[0m
+2022/04/21 03:01:21.043245 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:21.043416 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:01:21.044071 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 730.961µs[0m
+2022/04/21 03:01:21.044650 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:21.044757 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:01:21.045402 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 684.877µs[0m
+2022/04/21 03:01:21.550748 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 22 with index 923[0m
+2022/04/21 03:01:21.553522 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:21.558578 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term22, index924[0m
+2022/04/21 03:01:21.561171 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term22, index924[0m
+2022/04/21 03:01:21.561261 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term22, index924[0m
+2022/04/21 03:01:22.121578 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term21, index921[0m
+2022/04/21 03:01:22.126465 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term22, index924[0m
+2022/04/21 03:01:22.581718 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term17, index822[0m
+2022/04/21 03:01:22.718528 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term21, index921[0m
+2022/04/21 03:01:22.726623 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term22, index924[0m
+2022/04/21 03:01:25.206517 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/04/21 03:01:25.739700 test_test.go:104: [0;37m[info] partition: [2 4 5], [1 3][0m
+2022/04/21 03:01:26.266915 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/04/21 03:01:26.286747 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:26.286773 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:26.286780 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:26.286786 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:26.906142 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/04/21 03:01:26.948496 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 25 with index 1365[0m
+2022/04/21 03:01:26.969957 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:27.273118 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:27.273161 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:27.422326 test_test.go:104: [0;37m[info] partition: [1 2 4 5], [3][0m
+2022/04/21 03:01:27.488452 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term25, index1366[0m
+2022/04/21 03:01:27.488466 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term25, index1366[0m
+2022/04/21 03:01:27.499058 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term25, index1366[0m
+2022/04/21 03:01:27.635426 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term25, index1366[0m
+2022/04/21 03:01:28.120542 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/04/21 03:01:28.729785 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 03:01:28.752498 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:28.752543 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:28.752557 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:28.752567 raft.go:616: [0;33m[warning] peer 5 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:29.283031 test_test.go:104: [0;37m[info] partition: [1 2], [3 4 5][0m
+2022/04/21 03:01:29.400469 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 28 with index 1570[0m
+2022/04/21 03:01:29.429344 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:29.741757 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:29.747355 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:29.747383 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:29.747395 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:29.814257 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 03:01:30.498698 raft.go:380: [0;33m[warning] node 5 becomeLeader at term 31 with index 1576[0m
+2022/04/21 03:01:30.501783 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:30.504667 raft.go:652: [0;37m[info] peer 5(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:30.540716 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term28, index1571[0m
+2022/04/21 03:01:30.540763 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term28, index1571[0m
+2022/04/21 03:01:30.540796 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term28, index1571[0m
+2022/04/21 03:01:30.548454 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term31, index1577[0m
+2022/04/21 03:01:30.548539 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term31, index1577[0m
+2022/04/21 03:01:30.548603 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term31, index1577[0m
+2022/04/21 03:01:30.571418 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term28, index1571[0m
+2022/04/21 03:01:30.583573 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term31, index1577[0m
+2022/04/21 03:01:30.915678 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:01:30.915724 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:30.915791 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:30.915849 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:30.930861 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:30.930917 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:01:31.431034 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:01:31.431678 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:31.431903 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
+2022/04/21 03:01:31.433144 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 1.337023ms[0m
+2022/04/21 03:01:31.433777 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:31.433925 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
+2022/04/21 03:01:31.435194 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 1.328599ms[0m
+2022/04/21 03:01:31.435787 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:31.435936 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
+2022/04/21 03:01:31.436849 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 979.779µs[0m
+2022/04/21 03:01:31.437473 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:31.437599 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
+2022/04/21 03:01:31.438841 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 1.291587ms[0m
+2022/04/21 03:01:31.439468 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:31.439566 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
+2022/04/21 03:01:31.440399 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 870.978µs[0m
+2022/04/21 03:01:31.942592 raft.go:380: [0;33m[warning] node 4 becomeLeader at term 32 with index 1578[0m
+2022/04/21 03:01:31.948618 raft.go:652: [0;37m[info] peer 4(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:31.954188 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term32, index1579[0m
+2022/04/21 03:01:31.954188 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term32, index1579[0m
+2022/04/21 03:01:31.954187 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term32, index1579[0m
+2022/04/21 03:01:31.956746 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term32, index1579[0m
+2022/04/21 03:01:35.662731 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term25, index1366[0m
+2022/04/21 03:01:35.967463 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term28, index1571[0m
+2022/04/21 03:01:35.980572 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term31, index1577[0m
+2022/04/21 03:01:35.985742 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term32, index1579[0m
+2022/04/21 03:01:36.369742 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:36.380276 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:36.380314 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:36.382714 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:36.382769 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestPersistPartition2B (34.42s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	34.509s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistPartitionUnreliable2B|| true
+=== RUN   TestPersistPartitionUnreliable2B
+2022/04/21 03:01:39.945052 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:39.945363 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/04/21 03:01:39.945458 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 227.524µs[0m
+2022/04/21 03:01:39.945928 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:39.946023 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/04/21 03:01:39.946087 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 95.285µs[0m
+2022/04/21 03:01:39.946440 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:39.946530 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/04/21 03:01:39.946594 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 99.518µs[0m
+2022/04/21 03:01:39.947273 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:39.947451 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/04/21 03:01:39.947575 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 180.883µs[0m
+2022/04/21 03:01:39.948260 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:39.948412 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/04/21 03:01:39.948536 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 173.297µs[0m
+2022/04/21 03:01:40.603459 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 6 with index 5[0m
+2022/04/21 03:01:40.608854 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:40.614248 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term6, index6[0m
+2022/04/21 03:01:40.614304 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term6, index6[0m
+2022/04/21 03:01:40.614319 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term6, index6[0m
+2022/04/21 03:01:40.614313 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term6, index6[0m
+2022/04/21 03:01:40.614402 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term6, index6[0m
+2022/04/21 03:01:41.248943 test_test.go:104: [0;37m[info] partition: [4], [1 2 3 5][0m
+2022/04/21 03:01:41.833133 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/04/21 03:01:42.419269 test_test.go:104: [0;37m[info] partition: [3], [1 2 4 5][0m
+2022/04/21 03:01:42.432548 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.432574 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.456527 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.456570 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.456599 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.456620 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.456639 raft.go:616: [0;33m[warning] peer 2 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:42.931474 test_test.go:104: [0;37m[info] partition: [1 4 5], [2 3][0m
+2022/04/21 03:01:43.451606 test_test.go:104: [0;37m[info] partition: [1 2], [3 4 5][0m
+2022/04/21 03:01:43.986761 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 03:01:44.573893 test_test.go:104: [0;37m[info] partition: [1 3 5], [2 4][0m
+2022/04/21 03:01:45.137041 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 03:01:45.792164 test_test.go:104: [0;37m[info] partition: [], [1 2 3 4 5][0m
+2022/04/21 03:01:46.151222 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 16 with index 231[0m
+2022/04/21 03:01:46.168802 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:46.168843 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:46.174498 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:46.209049 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term16, index232[0m
+2022/04/21 03:01:46.211499 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term16, index232[0m
+2022/04/21 03:01:46.224866 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term16, index232[0m
+2022/04/21 03:01:46.917406 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:01:46.917467 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:46.918798 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:46.931935 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:46.932017 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:46.934467 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:01:47.434753 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:01:47.435414 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:47.435708 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/04/21 03:01:47.435982 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 410.11µs[0m
+2022/04/21 03:01:47.436631 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:47.436780 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/04/21 03:01:47.437094 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 371.636µs[0m
+2022/04/21 03:01:47.437706 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:47.437853 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/04/21 03:01:47.438144 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 343.955µs[0m
+2022/04/21 03:01:47.438756 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:47.438901 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/04/21 03:01:47.439088 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 242.668µs[0m
+2022/04/21 03:01:47.439683 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:47.439818 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/04/21 03:01:47.440142 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 374.432µs[0m
+2022/04/21 03:01:47.991130 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 18 with index 245[0m
+2022/04/21 03:01:47.996379 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:48.001346 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term18, index246[0m
+2022/04/21 03:01:48.001431 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term18, index246[0m
+2022/04/21 03:01:48.003913 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term18, index246[0m
+2022/04/21 03:01:48.907867 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term16, index232[0m
+2022/04/21 03:01:48.925595 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term18, index246[0m
+2022/04/21 03:01:49.964241 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term16, index232[0m
+2022/04/21 03:01:49.982432 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term18, index246[0m
+2022/04/21 03:01:50.581412 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 03:01:51.172631 test_test.go:104: [0;37m[info] partition: [1 4 5], [2 3][0m
+2022/04/21 03:01:51.768881 test_test.go:104: [0;37m[info] partition: [2 5], [1 3 4][0m
+2022/04/21 03:01:52.305425 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 22 with index 538[0m
+2022/04/21 03:01:52.363114 test_test.go:104: [0;37m[info] partition: [], [1 2 3 4 5][0m
+2022/04/21 03:01:52.496363 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:52.520838 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term22, index539[0m
+2022/04/21 03:01:52.523138 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term22, index539[0m
+2022/04/21 03:01:52.525518 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term22, index539[0m
+2022/04/21 03:01:52.982363 test_test.go:104: [0;37m[info] partition: [1 2 5], [3 4][0m
+2022/04/21 03:01:53.567615 test_test.go:104: [0;37m[info] partition: [1 5], [2 3 4][0m
+2022/04/21 03:01:54.112836 test_test.go:104: [0;37m[info] partition: [1 3 4 5], [2][0m
+2022/04/21 03:01:54.126901 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.139923 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.139953 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.139965 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.139975 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.139984 raft.go:616: [0;33m[warning] peer 3 is not a leader, but handling the append responce[0m
+2022/04/21 03:01:54.644128 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 25 with index 655[0m
+2022/04/21 03:01:54.649980 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:54.655045 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:54.804111 test_test.go:104: [0;37m[info] partition: [1 2 3 5], [4][0m
+2022/04/21 03:01:55.054684 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term25, index656[0m
+2022/04/21 03:01:55.062973 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term25, index656[0m
+2022/04/21 03:01:55.500314 test_test.go:104: [0;37m[info] partition: [1 3 4], [2 5][0m
+2022/04/21 03:01:56.293658 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 27 with index 662[0m
+2022/04/21 03:01:56.298873 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.308661 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.308713 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.308746 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.308767 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.308792 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:56.340011 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term27, index663[0m
+2022/04/21 03:01:56.340091 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term27, index663[0m
+2022/04/21 03:01:56.343350 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term25, index656[0m
+2022/04/21 03:01:56.361592 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term27, index663[0m
+2022/04/21 03:01:56.547572 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:01:56.547631 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:01:56.554965 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:01:56.565687 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:01:56.565791 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:01:56.565852 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:01:57.067621 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:01:57.068320 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:01:57.068545 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/04/21 03:01:57.069019 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 564.6µs[0m
+2022/04/21 03:01:57.069691 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:01:57.069839 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/04/21 03:01:57.070435 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 641.962µs[0m
+2022/04/21 03:01:57.071101 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:01:57.071258 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/04/21 03:01:57.071743 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 544.895µs[0m
+2022/04/21 03:01:57.072094 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:01:57.072184 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/04/21 03:01:57.072519 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 369.301µs[0m
+2022/04/21 03:01:57.072867 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:01:57.072952 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/04/21 03:01:57.073214 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 298.473µs[0m
+2022/04/21 03:01:57.727526 raft.go:380: [0;33m[warning] node 3 becomeLeader at term 29 with index 668[0m
+2022/04/21 03:01:57.730315 raft.go:652: [0;37m[info] peer 3(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:01:57.737755 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term29, index669[0m
+2022/04/21 03:01:57.742877 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term29, index669[0m
+2022/04/21 03:01:57.742888 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term29, index669[0m
+2022/04/21 03:01:59.867483 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term22, index539[0m
+2022/04/21 03:01:59.876092 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term22, index539[0m
+2022/04/21 03:02:00.041904 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term25, index656[0m
+2022/04/21 03:02:00.047183 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term27, index663[0m
+2022/04/21 03:02:00.047201 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term25, index656[0m
+2022/04/21 03:02:00.052837 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term27, index663[0m
+2022/04/21 03:02:00.064149 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term29, index669[0m
+2022/04/21 03:02:00.064174 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term29, index669[0m
+2022/04/21 03:02:00.904176 test_test.go:104: [0;37m[info] partition: [2 3], [1 4 5][0m
+2022/04/21 03:02:01.461433 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 03:02:02.077657 test_test.go:104: [0;37m[info] partition: [4 5], [1 2 3][0m
+2022/04/21 03:02:02.759932 test_test.go:104: [0;37m[info] partition: [2 3 5], [1 4][0m
+2022/04/21 03:02:03.373898 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 33 with index 952[0m
+2022/04/21 03:02:03.396762 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:02:03.407049 test_test.go:104: [0;37m[info] partition: [1 2 3 5], [4][0m
+2022/04/21 03:02:03.496850 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term33, index953[0m
+2022/04/21 03:02:03.504903 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term33, index953[0m
+2022/04/21 03:02:03.516178 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term33, index953[0m
+2022/04/21 03:02:03.942281 test_test.go:104: [0;37m[info] partition: [1 2 3 4], [5][0m
+2022/04/21 03:02:04.542506 test_test.go:104: [0;37m[info] partition: [1 2 3 5], [4][0m
+2022/04/21 03:02:05.063458 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term33, index953[0m
+2022/04/21 03:02:05.066741 test_test.go:104: [0;37m[info] partition: [1 4], [2 3 5][0m
+2022/04/21 03:02:05.752930 test_test.go:104: [0;37m[info] partition: [2 4], [1 3 5][0m
+2022/04/21 03:02:06.275635 raft.go:380: [0;33m[warning] node 2 becomeLeader at term 37 with index 1120[0m
+2022/04/21 03:02:06.286863 raft.go:652: [0;37m[info] peer 2(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:02:06.301831 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term37, index1121[0m
+2022/04/21 03:02:06.301891 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term37, index1121[0m
+2022/04/21 03:02:06.301934 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term37, index1121[0m
+2022/04/21 03:02:06.757250 test_test.go:257: [0;33m[warning] shutdown servers
+[0m
+2022/04/21 03:02:06.757295 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:02:06.783344 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term37, index1121[0m
+2022/04/21 03:02:06.793458 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:02:06.796140 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:02:06.796196 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:02:06.796237 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+2022/04/21 03:02:07.296414 test_test.go:264: [0;33m[warning] restart servers
+[0m
+2022/04/21 03:02:07.297110 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2022/04/21 03:02:07.297337 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 1[0m
+2022/04/21 03:02:07.298310 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 1.070954ms[0m
+2022/04/21 03:02:07.298971 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2022/04/21 03:02:07.299146 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 2[0m
+2022/04/21 03:02:07.300166 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 1.083641ms[0m
+2022/04/21 03:02:07.300844 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2022/04/21 03:02:07.300992 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 3[0m
+2022/04/21 03:02:07.301967 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 1.037122ms[0m
+2022/04/21 03:02:07.302668 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
+2022/04/21 03:02:07.302821 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 4[0m
+2022/04/21 03:02:07.303513 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 760.518µs[0m
+2022/04/21 03:02:07.303867 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
+2022/04/21 03:02:07.303959 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:5 store_id:5 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 >  create peer with ID 5[0m
+2022/04/21 03:02:07.304537 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 609.363µs[0m
+2022/04/21 03:02:07.952350 raft.go:380: [0;33m[warning] node 1 becomeLeader at term 39 with index 1121[0m
+2022/04/21 03:02:07.956469 raft.go:652: [0;37m[info] peer 1(StateLeader) handling append response, but less than half nodes have append the first entry[0m
+2022/04/21 03:02:07.958121 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 1, term39, index1122[0m
+2022/04/21 03:02:07.958900 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 5, term39, index1122[0m
+2022/04/21 03:02:07.958945 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 3, term39, index1122[0m
+2022/04/21 03:02:07.958973 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 2, term39, index1122[0m
+2022/04/21 03:02:10.478183 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term33, index953[0m
+2022/04/21 03:02:10.715859 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term37, index1121[0m
+2022/04/21 03:02:10.715897 peer_msg_handler.go:105: [0;33m[warning] no-op entry: peer 4, term39, index1122[0m
+2022/04/21 03:02:10.967972 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2022/04/21 03:02:10.978951 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2022/04/21 03:02:10.979032 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+2022/04/21 03:02:10.979095 node.go:198: [0;37m[info] stop raft store thread, storeID: 4[0m
+2022/04/21 03:02:10.979152 node.go:198: [0;37m[info] stop raft store thread, storeID: 5[0m
+--- PASS: TestPersistPartitionUnreliable2B (32.38s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	32.530s
+rm -rf /tmp/*test-raftstore*

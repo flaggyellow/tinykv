@@ -16,6 +16,7 @@ package raft
 
 import (
 	"reflect"
+	"strconv"
 
 	"github.com/pingcap-incubator/tinykv/log"
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
@@ -57,6 +58,9 @@ type RaftLog struct {
 	// Your Data Here (2A).
 	first uint64
 }
+
+// record: the function that be able to modify the log:
+// Append()
 
 // newLog returns log using the given storage. It recovers the log
 // to the state that it just commits and applies the latest snapshot.
@@ -112,7 +116,19 @@ func (l *RaftLog) nextEnts() (ents []pb.Entry) {
 		return nil
 	}
 	if l.applied > l.committed || l.applied+1 < l.first || l.committed+1-l.first > uint64(len(l.entries)) {
-		log.Errorf("Something went wrong in the log!")
+		// output the error
+		str := ""
+		if l.applied > l.committed {
+			str += "l.applied (" + strconv.FormatUint(l.applied, 10) + ") > l.committed (" + strconv.FormatUint(l.committed, 10) + ");"
+		}
+		if l.applied+1 < l.first {
+			str += "l.applied (" + strconv.FormatUint(l.applied, 10) + ")+1 < l.first (" + strconv.FormatUint(l.first, 10) + ");"
+		}
+		if l.committed+1-l.first > uint64(len(l.entries)) {
+			str += "l.committed (" + strconv.FormatUint(l.committed, 10) + ")+1-l.first(" +
+				strconv.FormatUint(l.first, 10) + ") > len(l.entries) (" + strconv.FormatUint(uint64(len(l.entries)), 10) + ");"
+		}
+		log.Errorf("Something went wrong in the log: %v", str)
 		return nil
 	}
 	return l.entries[l.applied-l.first+1 : l.committed-l.first+1]
@@ -187,7 +203,7 @@ func (l *RaftLog) Append(index uint64, ents []pb.Entry) {
 	if len(l.entries) == 0 {
 		l.entries = append(l.entries, ents...)
 		if len(l.entries) == 0 {
-			l.first = 0
+			l.first, _ = l.storage.FirstIndex()
 			log.Warnf("after append the l.entries is empty!!")
 			return
 		}
@@ -243,7 +259,7 @@ func (l *RaftLog) Append(index uint64, ents []pb.Entry) {
 		}
 	}
 	if len(l.entries) == 0 {
-		l.first = 0
+		l.first, _ = l.storage.FirstIndex()
 		log.Warnf("after append the l.entries is empty!!")
 		return
 	}

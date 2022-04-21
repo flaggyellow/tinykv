@@ -9,6 +9,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 
 	"github.com/Connor1996/badger"
@@ -308,7 +309,7 @@ func (c *Cluster) MustPutCF(cf string, key, value []byte) {
 		panic("len(resp.Responses) != 1")
 	}
 	if resp.Responses[0].CmdType != raft_cmdpb.CmdType_Put {
-		panic("resp.Responses[0].CmdType != raft_cmdpb.CmdType_Put")
+		panic("resp.Responses[0].CmdType != raft_cmdpb.CmdType_Put, the command type is" + strconv.FormatInt(int64(resp.Responses[0].CmdType), 10))
 	}
 }
 
